@@ -13,7 +13,7 @@
                         <div class="box-header">
                             <i class="ion ion-clipboard"></i>
 
-                            <h3 class="box-title">Create Assignment</h3>
+                            <h3 class="box-title">Create Assignmentt</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
