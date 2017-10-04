@@ -138,13 +138,6 @@ class AssignmentsModel extends CI_model
         $this->db->where('id', $topicId);
         $this->db->update('subjects');
     }
-
-    public function getTopics()
-    {
-        $query = $this->db->get('topics');
-        $Topics = $query->result();
-        return $Topics;
-    }
     
     public function getStudents(){
         $this->load->database();
