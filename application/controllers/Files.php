@@ -16,13 +16,14 @@ class Files extends MY_Controller
     public function index()
     {
         $data['imports'] = $this->fileModel->getFiles();
+        $data['fileNameView'] = 'Files/Files';
         crender('index', $data);
     }
     
     public function FileHistory()
     {
         $data['imports'] = $this->fileModel->getInactiveFiles();
-        $data['fileNameView'] = 'FileHistory';
+        $data['fileNameView'] = 'Files/FileHistory';
         crender('index', $data);
     }
     //END INDEXES

@@ -18,7 +18,7 @@ class OverviewModel extends CI_model {
         }
         if ($studentId) {
             $this->db->join('subject_done', 'subject_done.subject_id = subjects.id', 'left outer');
-            $this->db->where('subject_done.student_id', $studentId);
+            $this->db->where('subject_done.ov_number', $studentId);
         }
         $getAssignments = $this->db->get('subjects');
         $assignments = $getAssignments->result();

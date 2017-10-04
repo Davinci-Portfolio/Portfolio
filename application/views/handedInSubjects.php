@@ -19,13 +19,15 @@
                                 <tr>
                                     <th>Student</th>
                                     <th>Ov-number</th>
+                                    <th>Finished?</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach($doneSubjects as $doneSubject) { ?>
-                                    <tr data-file-id="<?= $doneSubject->id ?>">
+                                    <tr data-row-id="<?= $doneSubject->id ?>" class="answerRow">
+                                        <td><?= $doneSubject->name ?></td>
                                         <td><?= $doneSubject->ov_number ?></td>
-                                        <td><?= $doneSubject->ov_number ?></td>
+                                        <td><?= $doneSubject->done ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

@@ -1,8 +1,8 @@
-$("#submitQuestions").on("click", function () {
+/*$("#submitQuestions").on("click", function () {
     var form = $("#questionsForm").serialize();
     $.ajax({
        type: "POST",
-       url: "getAnswers",
+       url: "uploadFile",
        data: form,
 
        success: function(data){
@@ -12,4 +12,4 @@ $("#submitQuestions").on("click", function () {
      });
      event.preventDefault();
      return false;
-});
+});*/

@@ -10,17 +10,18 @@
                     <div class="box-header">
                         <h3 class="box-title">Upload a file</h3>
                     </div>
-                    <form role="form" method="POST" action="uploadFile" enctype="multipart/form-data">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label for="exampleInputFile">File</label>
-                                <input type="file" id="exampleInputFile" name="userfile">
-                            </div>
-                        </div>
-                        <div class="box-footer">
-                            <input type="submit" class="btn btn-primary" name="submit">
-                        </div>
+                    <?php echo $error;?>
+
+                    <?php echo form_open_multipart('upload/do_upload');?>
+
+                    <input type="file" name="userfile" size="20" />
+
+                    <br /><br />
+
+                    <input type="submit" value="upload" />
+
                     </form>
+
                         <div class="col-xs-4">
                     <div class="box">
                 </div>
@@ -28,3 +29,5 @@
         </div>
     </section>
 </div>
+
+

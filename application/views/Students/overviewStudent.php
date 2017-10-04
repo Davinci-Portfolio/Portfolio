@@ -33,7 +33,7 @@
                                             <td class="smallWidth"><?= $countQuestions ?> </td>
                                             <td><?= $questionAndAnswer->question ?></td>
                                             <td><?= $questionAndAnswer->answer ?></td>
-                                            <td class="smallWidth wrongAnswer"><?= $questionAndAnswer->wrong ?></td>
+                                            <td class="smallWidth wrongAnswer btn-primary"><?= $questionAndAnswer->wrong ?></td>
                                         </tr>
                                <?php }
                                 } ?>

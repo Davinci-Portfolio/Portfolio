@@ -17,6 +17,7 @@
                                 <tr>
                                     <th>Assignment</th>
                                     <th>Subtopic</th>
+                                    <th>Cohort</th>
                                     <th class="no-sort">Deadline</th>
                                     <th class="no-sort oneIcon icons">
                                         <button type="button" class="addButton">
@@ -30,6 +31,7 @@
                                     <tr data-row-id="<?= $subject->id ?>" class="subjectRow">
                                         <td><?= $subject->subject ?></td>
                                         <td><?= $subject->subtopic ?></td>
+                                        <td><?= $subject->cohort ?></td>
                                         <td class="smallWidth datePicker">
                                             <?= $subject->display_date ?>
                                         </td>

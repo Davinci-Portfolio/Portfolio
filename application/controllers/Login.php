@@ -32,7 +32,7 @@ class Login extends MY_Controller
         $checkAdmin = '1';
         $data = $this->loginModel->getUserData($userdata['username']); // data van de db
         
-        if ($userdata['username'] == $data[0]->name && $userdata['password'] == $data[0]->ov_number) {
+        if ($userdata['username'] == $data[0]->name && $userdata['password'] == $data[0]->wachtwoord) {
            
             $userdata['logged_in'] = true;
             $this->session->set_userdata($userdata);

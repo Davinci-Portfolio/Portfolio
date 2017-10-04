@@ -129,4 +129,7 @@ $(function() {
     $('button.saveInput, button.cancelChange').prop('disabled', true);
 });
 
-
+$('.answerRow').on('click', function() {
+    var studentId = $(this).data("row-id");
+    document.location.href = '/portfolio/Assignments/studentAnswers/' + studentId;
+});

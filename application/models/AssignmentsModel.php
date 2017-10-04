@@ -39,6 +39,23 @@ class AssignmentsModel extends CI_model
         $subjects_done = $this->db->get('subject_done')->result();
         
         return $subjects_done;
+    }    
+
+    public function getAnswers($studentId)
+    {
+        $this->load->database();
+        $this->db->where('answers.subject_id', $studentId);
+        $getAnswers = $this->db->get('answers')->result();
+        
+        return $getAnswers;
+    }
+
+    public function insertComment($Comment, $StudentId)
+    {
+        $this->load->database();
+        $this->db->set('Comment', $Comment);
+        $this->db->where('id', $StudentId);
+         $this->db->update('answers');
     }
 
     public function insertData($dataSubjects, $dataFormInputs)
@@ -114,29 +131,11 @@ class AssignmentsModel extends CI_model
         $this->db->update('subjects');
     }
 
-    public function getTopics()
-    {
-    $this->load->database();
-    $query = $this->db->get('topics');
-    $Topics = $query->result();
-    return $Topics;
+    public function getStudentCohort(){
+        $this->load->database();
+        $query = $this->db->get('students');
+        $students = $query->result();
+        return $students;
     }
 
-    // public function getTopics2()
-    //  {
-        
-    //     $query = $this->db->get('topics');
-
-    //     foreach ($query->result() as $row)
-    //     {
-    //         echo $row->Topic;
-    //     }
-
-    //     // $query = $this->db->query('SELECT Topic FROM topics');
-
-
-    //     return $query->result();
-
-    //     //echo 'Total Results: ' . $query->num_rows();
-    //  }
 }

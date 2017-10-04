@@ -16,8 +16,7 @@ class Assignments extends MY_Controller {
 	public function index()
 	{
 		$data['subjects'] = $this->AssignmentsModel->getSubjects();
-		$data['topics'] = $this->AssignmentsModel->getTopics();
-        $data['fileNameView'] = 'assignments/overviewAssignments';
+    $data['fileNameView'] = 'assignments/overviewAssignments';
 		crender('index', $data);
 	}
 
@@ -26,6 +25,22 @@ class Assignments extends MY_Controller {
 		$data['doneSubjects'] = $this->AssignmentsModel->getFinishedSubjects();
 		$data['fileNameView'] = 'handedInSubjects';
 		crender('index', $data);
+	}
+
+	public function studentAnswers($studentId)
+	{
+		//$data['doneSubjects'] = $this->AssignmentsModel->getFinishedSubjects();
+		$data['getAnswers'] = $this->AssignmentsModel->getAnswers($studentId);
+		$data['fileNameView'] = 'studentAnswers';
+		crender('index', $data);
+	}
+
+	public function uploadComment()
+	{
+		$Comment = $_POST['comment'];
+		$StudentId = $_POST['studentId'];
+		$this->AssignmentsModel->insertComment($Comment, $StudentId);
+		redirect('Assignments/handedInSubjects');
 	}
 
 	public function formPage($btnElement, $id = null)
@@ -37,7 +52,7 @@ class Assignments extends MY_Controller {
 		}
 		$data['fileNameView'] = 'assignments/formPage';
 		$data['JSFileNames'] = ['public/custom/js/formPage.js'];
-		$data['topics'] = $this->AssignmentsModel->getTopics();
+		$data['students'] = $this->AssignmentsModel->getStudentCohort();
 		crender('index', $data);
 	}
 
@@ -52,13 +67,13 @@ class Assignments extends MY_Controller {
 	public function sendDataForm()
 	{
 		$dataFormTitle = $_POST['title'];
+		$dataFormSubtopic = $_POST['subtopic'];
 		$dataFormInput = $_POST['question'];
-		$dataFormTopic  = $_POST['topic'];
 		$dataSubjects = [
 			'subject' => $dataFormTitle,
-			'subtopic' => $dataFormTopic
+			'subtopic' => $dataFormSubtopic
 		];
-		$this->AssignmentsModel->insertData($dataSubjects, $_POST['question']);
+		$this->AssignmentsModel->insertData($dataSubjects, $dataFormInput);
 	}
 
 	public function updateData()
@@ -91,6 +106,5 @@ class Assignments extends MY_Controller {
 		$newDisplayedBtn = ($displayBtn == 'closeBtn' ? 1 : 0);
 		$this->AssignmentsModel->changeDisplaySubject($topicId, $newDisplayedBtn);
 	}
-
 
 }

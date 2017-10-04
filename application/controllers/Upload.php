@@ -9,7 +9,7 @@ class Upload extends MY_Controller {
         parent::loginCheck();
         parent::checkForbiddenUser();
         $this->load->helper(array('form', 'url'));
-        $this->load->model('UploadModel');
+        //$this->load->model('UploadModel');
     }
 
     public function index($error = null)

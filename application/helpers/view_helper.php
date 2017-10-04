@@ -76,7 +76,6 @@ if( ! function_exists('loginRender'))
         $data['CSSFileNames'] = GetCSSFiles($data);
         $ci =& get_instance();
         $ci->load->view($data['fileNameView']);
-        $ci->load->view('templates/footer', $data);
     }
 }
 

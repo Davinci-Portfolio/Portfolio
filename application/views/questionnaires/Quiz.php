@@ -13,7 +13,7 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="answers" class="table table-bordered table-striped overviews">
+                            <table id="answers" class="table table-bordered table-striped overviews" action="<?php echo base_url();?>assigments/uploadComment">
                                 <thead>
                                     <tr>
                                         <th class="no-sort">Question</th>

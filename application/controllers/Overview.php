@@ -16,6 +16,7 @@ class Overview extends MY_Controller {
 	public function index()
 	{
 	 	$data['students'] = $this->OverviewModel->getStudents();
+	 	$data['fileNameView'] = 'Students/Overview';
 		crender('index', $data);
 	}
 
@@ -26,7 +27,7 @@ class Overview extends MY_Controller {
 		$saveStudentId = $studentId;
 		$studentId = null;
 		$data['subject'] = $this->OverviewModel->getAssignments($studentId, $assignmentId);
-		$data['fileNameView'] = 'overviewStudent';
+		$data['fileNameView'] = 'Students/overviewStudent';
 		crender('index', $data);
 	}
 
@@ -34,7 +35,7 @@ class Overview extends MY_Controller {
 	{
 		$data['student'] = $this->OverviewModel->getStudents($studentId);
 		$data['assignments'] = $this->OverviewModel->getAssignments($studentId);
-		$data['fileNameView'] = 'overviewAssignmentsStudent';
+		$data['fileNameView'] = 'Students/overviewAssignmentsStudent';
 		crender('index', $data);
 	}
 }

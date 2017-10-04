@@ -6,3 +6,7 @@
 .text, .addQuestion {
     width: 96%;
 }
+
+.smallerWidth{
+	width: 30px;
+}
