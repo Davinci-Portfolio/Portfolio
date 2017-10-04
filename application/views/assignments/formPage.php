@@ -25,6 +25,7 @@
                               echo '<option value="'.$topic->Topic.'">'.$topic->Topic.'</option>';
                             }
                             ?>
+                            <!-- test -->
                           </select>
                         </br>
                         <ul class="todo-list">
