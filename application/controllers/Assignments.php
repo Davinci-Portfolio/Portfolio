@@ -53,6 +53,7 @@ class Assignments extends MY_Controller {
 		$data['fileNameView'] = 'assignments/formPage';
 		$data['JSFileNames'] = ['public/custom/js/formPage.js'];
 		$data['students'] = $this->AssignmentsModel->getStudentCohort();
+		$data['topics'] = $this->AssignmentsModel->getTopic();
 		crender('index', $data);
 	}
 
@@ -67,13 +68,15 @@ class Assignments extends MY_Controller {
 	public function sendDataForm()
 	{
 		$dataFormTitle = $_POST['title'];
-		$dataFormSubtopic = $_POST['subtopic'];
+		$dataFormTopic  = $_POST['topic'];
 		$dataFormInput = $_POST['question'];
 		$dataSubjects = [
 			'subject' => $dataFormTitle,
-			'subtopic' => $dataFormSubtopic
+			'subtopic' => $dataFormTopic
+
 		];
-		$this->AssignmentsModel->insertData($dataSubjects, $dataFormInput);
+		$this->AssignmentsModel->insertData($dataSubjects, $_POST['question']);
+
 	}
 
 	public function updateData()
