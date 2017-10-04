@@ -20,9 +20,9 @@
                         <input required name="title" class="headText" type="text" placeholder="Titel vragenlijst">
                           <select required name="topic" class="form-control">
                             <?php 
-                            foreach($topics as $row)
+                            foreach($topics as $topic)
                             { 
-                              echo '<option value="'.$row->Topic.'">'.$row->Topic.'</option>';
+                              echo '<option value="'.$topic->Topic.'">'.$topic->Topic.'</option>';
                             }
                             ?>
                           </select>
