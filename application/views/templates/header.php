@@ -69,7 +69,7 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                            <div class="pull-left">
-                              <a href="#" class="btn btn-default btn-flat">Profile</a>
+                              <a href="<?php echo site_url('userInfo/index');?>" class="btn btn-default btn-flat">Profile</a>
                            </div>
                            <div class="pull-right">
                               <a href="<?php echo site_url('Login/userLogout');?>" id="UserLogout" class="btn btn-default btn-flat">Sign out</a>
@@ -118,25 +118,23 @@
             <!-- /.search form -->
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu">
-               <li class="header">Menu</li>
+              <li class="header">Menu</li>
               <?php if ($this->session->auth == 'admin') { ?>  <!-- if a admin is loged in show : -->
-                  <li><a href="<?php echo site_url('Overview/index') ?>"><i class="fa fa-link"></i> <span>Overview</span></a></li>
-                  <li><a href="<?php echo site_url('Upload/index') ?>"><i class="fa fa-link"></i> <span>Upload</span></a></li> 
-                  <li class="treeview">
-                     <a href="#"><i class="fa fa-share"></i><span>Files</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
-                     <ul class="treeview-menu">
-                        <li><a href="<?php echo site_url('Files/index') ?>"><i class="fa fa-circle-o"></i><span>Overview-Files</span></a></li>
-                        <li><a href="<?php echo site_url('Files/FileHistory') ?>"><i class="fa fa-circle-o"></i><span>FileHistory</span></a></li>
-                     </ul>
-                  </li>
-                  <li><a href="<?php echo site_url('Assignments/index') ?>"><i class="fa fa-link"></i> <span>Assignments (docent)</span></a></li>
-                  <li><a href="<?php echo site_url('questionnaires/index') ?>"><i class="fa fa-link"></i> <span>Assignments Students</span></a></li>
-
-                  <li><a href="<?php echo site_url('Assignments/handedInSubjects') ?>"><i class="fa fa-link"></i> <span>handedInSubjects</span></a></li>
-                  
-               <?php } else { ?> <!-- if a normal user is loged in show : -->
-                  <li><a href="<?php echo site_url('questionnaires/index') ?>"><i class="fa fa-link"></i> <span>Assignments Students</span></a></li>    
-               <?php } ?>       
+                <li><a href="<?php echo site_url('Overview/index') ?>"><i class="fa fa-link"></i><span>Overview</span></a></li>
+                <li><a href="<?php echo site_url('Upload/index') ?>"><i class="fa fa-link"></i><span>Upload</span></a></li> 
+                <li class="treeview">
+                <a href="#"><i class="fa fa-share"></i><span>Files</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+                  <ul class="treeview-menu">
+                   <li><a href="<?php echo site_url('Files/index') ?>"><i class="fa fa-circle-o"></i><span>Overview-Files</span></a></li>
+                   <li><a href="<?php echo site_url('Files/FileHistory') ?>"><i class="fa fa-circle-o"></i><span>FileHistory</span></a></li>
+                  </ul>
+                </li>
+                <li><a href="<?php echo site_url('Assignments/index') ?>"><i class="fa fa-link"></i> <span>Assignments (docent)</span></a></li>
+                <li><a href="<?php echo site_url('questionnaires/index') ?>"><i class="fa fa-link"></i> <span>Assignments Students</span></a></li>
+                <li><a href="<?php echo site_url('Assignments/handedInSubjects') ?>"><i class="fa fa-link"></i> <span>handedInSubjects</span></a></li>
+              <?php } else { ?> <!-- if a normal user is loged in show : -->
+                <li><a href="<?php echo site_url('questionnaires/index') ?>"><i class="fa fa-link"></i> <span>Assignments Students</span></a></li>    
+              <?php } ?>       
             </ul>
             <!-- /.sidebar-menu -->
          </section>
