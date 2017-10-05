@@ -30,7 +30,7 @@ class OverviewModel extends CI_model {
 
         $this->load->database();
         $this->db->join('answers', 'answers.question_id = questions.id', 'left outer');
-        $this->db->where('answers.student_id', $studentId);
+        $this->db->where('answers.ov_number', $studentId);
         $this->db->where('questions.subject_id', $assignmentId);
         $getQuestionsAndAnswers = $this->db->get('questions');
         $questionsAndAnswers = $getQuestionsAndAnswers->result();
