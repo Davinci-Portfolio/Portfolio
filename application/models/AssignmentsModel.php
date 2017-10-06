@@ -2,6 +2,13 @@
 class AssignmentsModel extends CI_model
 {
 
+    public function getTopic(){
+        $this->load->database();
+        $query = $this->db->get('topics');
+        $topics = $query->result();
+        return $topics;
+    }
+
     public function getSubjects()
     {
         $this->load->database();
@@ -68,7 +75,8 @@ class AssignmentsModel extends CI_model
             if ($question !== '') {
                 $dataArray = array(
                     'question' => $question,
-                    'subject_id' => $lastId
+                    'subject_id' => $lastId,
+                    'cohort' => $students
                 );
                 $this->load->database();
                 $this->db->insert('questions', $dataArray);
@@ -130,10 +138,10 @@ class AssignmentsModel extends CI_model
         $this->db->where('id', $topicId);
         $this->db->update('subjects');
     }
-
-    public function getStudentCohort(){
+    
+    public function getStudents(){
         $this->load->database();
-        $query = $this->db->get('students');
+        $query = $this->db->get('cohorts');
         $students = $query->result();
         return $students;
     }
