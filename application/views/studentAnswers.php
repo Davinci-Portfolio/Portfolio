@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Answers <?= $getAnswers[ARRAY_FIRST_INDEX]->ov_number ?></h1>
+        <h1>Answers</h1>
     </section>
 
     <!-- Main content -->
@@ -12,6 +12,7 @@
                     <div class="box-header">
                         <h3 class="box-title">All handed in Assigments.</h3>
                     </div>
+                    <?php dd($getAnswers); ?>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <form method="post" action="<?php echo base_url();?>Assignments/uploadComment/">
@@ -25,9 +26,9 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach($getAnswers as $getAnswer) { ?>
-                                        <tr data-row-id="<?= $getAnswer->id ?>">
-                                            <td><?= $getAnswer->answer ?></td>        
-                                            <td><?= $getAnswer->answer ?></td>    
+                                        <tr data-row-id="<?= $getAnswer[0]->id ?>">
+                                            <td><?= $getAnswer[0]->question ?></td>
+                                            <td><?= $getAnswer[0]->answer ?></td>
                                             <td></td>    
                                         </tr>
                                     <?php } ?>
