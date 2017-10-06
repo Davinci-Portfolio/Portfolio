@@ -15,10 +15,10 @@
                     <h3 class="box-title">Create Assignment</h3>
                   </div>
                   <!-- /.box-header -->
+                  <form id="formInput">
                   <div class="box-body">
-                    <form id="formInput">
-                        <input required name="title" class="headText" type="text" placeholder="Titel vragenlijst">
-                          <select required name="topic" class="form-control">
+                    <input name="title" class="headText" type="text" placeholder="Titel vragenlijst">
+                          <select name="topic" class="form-control">
                             <?php 
                             foreach($topics as $topic)
                             { 
@@ -42,7 +42,7 @@
                                 </div>
                             </li>
                         </ul>
-                    </form>
+                    
                   </div>
                   <!-- /.box-body -->
                   <div class="box-footer clearfix no-border">
@@ -60,13 +60,15 @@
                       <?php foreach ($students as $student) { ?>
                       <tr data-row-id="<?= $student->description ?>" class="subjectRow">
                         <li>
-                          <input type="checkbox"><?= $student->description ?></input>
+                            <input name="cohort" value="<?= $student->description ?>" type="checkbox"><?= $student->description ?></input>
+
                         </li>
                       </tr>
                       <?php } ?>
                     
                     </div>
                   </div>
+              </form>
                 <!-- /.box -->
             </div>
         <!-- /.col -->
