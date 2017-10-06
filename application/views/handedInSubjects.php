@@ -12,6 +12,7 @@
                     <div class="box-header">
                         <h3 class="box-title">All handed in Assigments.</h3>
                     </div>
+                    
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table class="table table-bordered table-striped overviews">

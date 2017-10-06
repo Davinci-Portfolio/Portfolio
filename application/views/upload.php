@@ -12,14 +12,12 @@
                     </div>
                     <?php echo $error;?>
 
-                    <?php echo form_open_multipart('upload/do_upload');?>
+                    <?php echo form_open_multipart('upload/uploadFile');?>
+                        <input type="file" name="userfile" size="20" />
 
-                    <input type="file" name="userfile" size="20" />
+                        <br /><br />
 
-                    <br /><br />
-
-                    <input type="submit" value="upload" />
-
+                        <input type="submit" value="upload" />
                     </form>
 
                         <div class="col-xs-4">

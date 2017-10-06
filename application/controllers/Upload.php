@@ -9,46 +9,48 @@ class Upload extends MY_Controller {
         parent::loginCheck();
         parent::checkForbiddenUser();
         $this->load->helper(array('form', 'url'));
-        //$this->load->model('UploadModel');
+        $this->load->model('UploadModel');
     }
 
     public function index($error = null)
     {
-		crender('index', array('error' => ''));
+		  crender('index', array('error' => ''));
     }
 
     public function uploadFile() 
     { 
+      $row = [];
          $config['upload_path']   = './uploads/'; 
          $config['allowed_types'] = 'csv|xls|xlsx|xml'; 
          $config['max_size']      = 10000; 
-         
 
          $this->load->library('upload', $config);
-         $this->upload->initialize($config);
     
         if (!$this->upload->do_upload('userfile')) {
             $error = array('error' => $this->upload->display_errors());
             redirect('upload/index', $error); 
         }
-        
+
         $this->UploadModel->insertFileName($this->upload->data());
-
-
         $data = $this->upload->data();
-        
         $file = fopen('./uploads/' . $this->upload->data('file_name'),"r");	
-
- 		     $file = fopen($data['full_path'], 'r');
-
-		    $row = fgetcsv($file);
+        // $file = fopen($data['full_path'], 'r');
+        $header = fgetcsv($file);
+        while ($row = fgetcsv($file)) {
+          $arr = array();
+          foreach ($header as $i => $col)
+            $arr[$col] = $row[$i];
+            $row[] = $arr;
+        }
+		  
+        var_dump($row);die();
 
 
         //$this->load->model('StudentModel');
         //$this->StudentModel->insertEntry('test','test');
 
 
-       	redirect('files/fileHistory');
+       	redirect('files/index');
         
       } 
 
