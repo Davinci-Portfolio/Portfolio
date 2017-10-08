@@ -48,18 +48,16 @@ class AssignmentsModel extends CI_model
         return $subjects_done;
     }    
 
-    public function getAnswers($studentId)
+    public function getAnswers($studentId = null)
     {
         $this->load->database();
-        $answerQuery = $this->db->from('answers')->where('subject_id', $studentId)->get();
-        $getAnswers = $answerQuery->result();
-        $questionQuery = $this->db->from('questions')->where('subject_id', $studentId)->get();
-        $getQuestions = $questionQuery->result();
+        $getAnswers = $this->db->from('answers')->where('subject_id', $studentId)->get()->result();
+        $getQuestions = $this->db->from('questions')->where('subject_id', $studentId)->get()->result();
+        
         $dataArray = array(
-            'answers' => $getAnswers,
-            'questions' => $getQuestions
+            'answer' => $getQuestions,
+            'question' => $getAnswers
         );
-    
         return($dataArray);
     }
 

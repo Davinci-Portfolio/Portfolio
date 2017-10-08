@@ -26,9 +26,9 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach($getAnswers as $getAnswer) { ?>
-                                        <tr data-row-id="<?= $getAnswer[0]->id ?>">
-                                            <td><?= $getAnswer[0]->question ?></td>
-                                            <td><?= $getAnswer[0]->answer ?></td>
+                                        <tr data-row-id="<?= $getAnswer->id ?>">
+                                            <td><?= $getAnswer->question ?></td>
+                                            <td><?= $getAnswer->answer ?></td>
                                             <td></td>    
                                         </tr>
                                     <?php } ?>
