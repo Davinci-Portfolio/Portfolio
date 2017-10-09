@@ -12,7 +12,6 @@
                     <div class="box-header">
                         <h3 class="box-title">All handed in Assigments.</h3>
                     </div>
-                    <?php dd($getAnswers); ?>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <form method="post" action="<?php echo base_url();?>Assignments/uploadComment/">
@@ -21,17 +20,20 @@
                                     <tr>
                                         <th class="no-sort">Question</th>        
                                         <th class="no-sort">Answer</th>         
-                                        <th class="no-sort smallWidth"></th>         
+                                        <th class="no-sort"></th>         
+                                               
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($getAnswers as $getAnswer) { ?>
-                                        <tr data-row-id="<?= $getAnswer->id ?>">
-                                            <td><?= $getAnswer->question ?></td>
+                                    <?php foreach($getQuestions as $getQuestion) { ?>
+                                        <tr data-row-id="<?= $getQuestion->id ?>">
+                                            <td><?= $getQuestion->question ?></td>
+                                    <?php } foreach($getAnswers as $getAnswer) { ?>
                                             <td><?= $getAnswer->answer ?></td>
-                                            <td></td>    
+                                            <td></td>  
                                         </tr>
                                     <?php } ?>
+                                    
                                 </tbody>
                                 <tfoot>
                                     <tr>
