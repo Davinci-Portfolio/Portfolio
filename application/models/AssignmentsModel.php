@@ -64,14 +64,7 @@ class AssignmentsModel extends CI_model
         // );
         // return($dataArray);
     }
-
-        public function getQuestions($id = null)
-        {
-            $this->load->database();
-            $getQuestions = $this->db->from('questions')->where('subject_id', $id)->get()->result();
-            return($getQuestions);
-        }
-
+    
     public function insertComment($Comment, $StudentId)
     {
         $this->load->database();

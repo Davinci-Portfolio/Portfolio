@@ -30,6 +30,11 @@ $('.subjectRow').on('click', function() {
     document.location.href = '/portfolio/questionnaires/overviewQuiz/' + assignmentId;
 });
 
+$('.results').on('click', function() {
+    var assignmentId = $(this).data("row-id");
+    document.location.href = '/portfolio/questionnaires/overviewQuestionsAnswers/' + assignmentId;
+});
+
 // $(window).on('load', function () {
 //     $("#answersForm").on("submit", function (e) {
 //         e.preventDefault();

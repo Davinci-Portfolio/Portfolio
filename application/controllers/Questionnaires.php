@@ -7,15 +7,15 @@ class questionnaires extends MY_Controller {
     
     function __construct()
     {
-        parent::__construct();
-        parent::loginCheck();
-        $this->load->model('AssignmentsModel');
+	    parent::__construct();
+	    parent::loginCheck();
+	    $this->load->model('AssignmentsModel');
     }
 
 	public function index()
 	{
 		$data['subjects'] = $this->AssignmentsModel->getSubjects();
-        $data['fileNameView'] = 'questionnaires/overviewQuestionnaires';
+    $data['fileNameView'] = 'questionnaires/overviewQuestionnaires';
 		crender('index', $data);
 	}
 
@@ -23,7 +23,16 @@ class questionnaires extends MY_Controller {
 	{
 		$data['questions'] = $this->AssignmentsModel->getAssignments($id);
 		$data['subjects'] = $this->AssignmentsModel->getSubjects($id);
-    	$data['fileNameView'] = 'Questionnaires/quiz';
+   	$data['fileNameView'] = 'Questionnaires/quiz';
+		crender('index', $data);
+	}
+
+	public function overviewQuestionsAnswers($id = null)
+	{
+		$data['subjects'] = $this->AssignmentsModel->getSubjects();
+		$data['questions'] = $this->AssignmentsModel->getAssignments($id);
+		$data['answers'] = $this->AssignmentsModel->getAnswers($id);
+		$data['fileNameView'] = 'questionnaires/overviewQuestionsAnswers';
 		crender('index', $data);
 	}
 

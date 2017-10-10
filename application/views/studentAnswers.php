@@ -20,8 +20,7 @@
                                     <tr>
                                         <th class="no-sort">Question</th>        
                                         <th class="no-sort">Answer</th>         
-                                        <th class="no-sort"></th>         
-                                               
+                                        <th class="no-sort"></th>              
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,8 +31,7 @@
                                             <td><?= $getAnswer->answer ?></td>
                                             <td></td>  
                                         </tr>
-                                    <?php } ?>
-                                    
+                                    <?php } ?>  
                                 </tbody>
                                 <tfoot>
                                     <tr>
