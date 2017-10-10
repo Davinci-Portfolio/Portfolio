@@ -27,7 +27,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <input size="100", type="text" data-id='<?= $question->id ?>' name="answer<?= $question->id ?>" value="">
+                                                <input size="100", type="text" data-id='<?= $question->id ?>' name="answer<?= $question->id ?>" value="" placeholder="Vul hier uw antwoord in.">
                                             </td>
                                         </tr>
                                     <?php } ?>

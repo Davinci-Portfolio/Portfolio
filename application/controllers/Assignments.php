@@ -46,6 +46,7 @@ class Assignments extends MY_Controller {
 
 	public function formPage($btnElement, $id = null)
 	{
+		$this->load->helper('form');
 		if ($id !== null) {
 			$data['editData'] = $this->AssignmentsModel->getSubjects($id);
 		} else {
@@ -55,6 +56,7 @@ class Assignments extends MY_Controller {
 		$data['JSFileNames'] = ['public/custom/js/formPage.js'];
 		$data['students'] = $this->AssignmentsModel->getStudents();
 		$data['topics'] = $this->AssignmentsModel->getTopic();
+
 		crender('index', $data);
 	}
 
