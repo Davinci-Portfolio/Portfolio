@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Answers <?= $getAnswers[ARRAY_FIRST_INDEX]->student_id ?></h1>
+        <h1>Answers</h1>
     </section>
 
     <!-- Main content -->
@@ -18,19 +18,22 @@
                             <table class="table table-bordered table-striped overviews">
                                 <thead>
                                     <tr>
-                                        <th>Student</th>        
-                                        <th class="no-sort smallWidth"></th>         
-                                        <th class="no-sort smallWidth"></th>         
+                                        <th class="no-sort">Question</th>        
+                                        <th class="no-sort">Answer</th>         
+                                        <th class="no-sort"></th>         
+                                               
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($getAnswers as $getAnswer) { ?>
-                                        <tr data-row-id="<?= $getAnswer->id ?>">
-                                            <td><?= $getAnswer->answer ?></td>        
-                                            <td></td>    
-                                            <td></td>    
+                                    <?php foreach($getQuestions as $getQuestion) { ?>
+                                        <tr data-row-id="<?= $getQuestion->id ?>">
+                                            <td><?= $getQuestion->question ?></td>
+                                    <?php } foreach($getAnswers as $getAnswer) { ?>
+                                            <td><?= $getAnswer->answer ?></td>
+                                            <td></td>  
                                         </tr>
                                     <?php } ?>
+                                    
                                 </tbody>
                                 <tfoot>
                                     <tr>

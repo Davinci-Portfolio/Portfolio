@@ -28,10 +28,10 @@ class Assignments extends MY_Controller {
 		crender('index', $data);
 	}
 
-	public function studentAnswers($studentId)
+	public function studentAnswers($id)
 	{
-		//$data['doneSubjects'] = $this->AssignmentsModel->getFinishedSubjects();
-		$data['getAnswers'] = $this->AssignmentsModel->getAnswers($studentId);
+		$data['getAnswers'] = $this->AssignmentsModel->getAnswers($id);
+		$data['getQuestions'] = $this->AssignmentsModel->getQuestions($id);
 		$data['fileNameView'] = 'studentAnswers';
 		crender('index', $data);
 	}
