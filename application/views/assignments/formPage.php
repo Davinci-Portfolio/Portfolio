@@ -25,11 +25,6 @@
                               <option value="<?=$topic->Topic ?>"><?=$topic->Topic ?></option>
                             <?php }
                             ?>
-<!--                           <?php 
-                            // echo form_dropdown('topics', $topics);
-                          
-                            ?> -->
-
                           </select>
                         </br>
                         <ul class="todo-list">

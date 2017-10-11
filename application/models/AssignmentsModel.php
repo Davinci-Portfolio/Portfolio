@@ -4,9 +4,8 @@ class AssignmentsModel extends CI_model
 
     public function getTopic(){
         $this->load->database();
-        $this->db->select('Topic');
         $query = $this->db->get('topics');
-        $topics = $query->result_array();
+        $topics = $query->result();
         return $topics;
     }
 
