@@ -2,6 +2,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>Your Questions - Anwers - Comments for - <?= $subjects[ARRAY_FIRST_INDEX]->subject ?></h1>
+    <?php dd($answers); ?>
   </section>
 
   <!-- Main content -->
@@ -25,11 +26,18 @@
                       <td><?= $question->question ?></td>
                   <?php } foreach($answers as $answer) { ?>
                       <td><?= $answer->answer ?></td>
-                      <td></td>  
                     </tr>
                   <?php } ?>  
                 </form>    
               </tbody>
+              <tfoot>
+                <?php foreach($answers as $answer) { ?>
+                  <tr>
+                    <td>comment -></td>
+                    <td><?= $answer->Comment ?></td>
+                  </tr>
+                <?php } ?>
+              </tfoot>
             </table>
           </div>
         <!-- /.box-body -->
