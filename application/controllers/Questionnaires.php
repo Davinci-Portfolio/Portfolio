@@ -29,7 +29,8 @@ class questionnaires extends MY_Controller {
 
 	public function overviewQuestionsAnswers($id = null)
 	{
-		$data['subjects'] = $this->AssignmentsModel->getSubjects();
+		$data['subjects'] = $this->AssignmentsModel->getSubjects($id);
+		$data['subjectsDone'] = $this->AssignmentsModel->getFinishedSubjects($id);
 		$data['questions'] = $this->AssignmentsModel->getAssignments($id);
 		$data['answers'] = $this->AssignmentsModel->getAnswers($id);
 		$data['fileNameView'] = 'questionnaires/overviewQuestionsAnswers';

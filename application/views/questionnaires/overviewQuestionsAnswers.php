@@ -31,10 +31,10 @@
                 </form>    
               </tbody>
               <tfoot>
-                <?php foreach($answers as $answer) { ?>
+                <?php foreach($subjectsDone as $subjectDone) { ?>
                   <tr>
                     <td>comment -></td>
-                    <td><?= $answer->Comment ?></td>
+                    <td><?= $subjectDone->Comment ?></td>
                   </tr>
                 <?php } ?>
               </tfoot>

@@ -9,11 +9,16 @@ class AssignmentsModel extends CI_model
         return $topics;
     }
 
-    public function getSubjects()
+    public function getSubjects($id = null)
     {
         $this->load->database();
-        $getSubjects = $this->db->get('subjects');
-        $subjects = $getSubjects->result();
+        if ($id) {
+          $getSubjects = $this->db->from('subjects')->where('subject_id', $id)->get();
+          $subjects = $getSubjects->result();
+        } else {
+          $getSubjects = $this->db->get('subjects');
+          $subjects = $getSubjects->result();
+        }
         foreach ($subjects as $subject) {
             $subject->display = ($subject->display == 1 ? 'open' : 'close');
             if ($subject->display_date == null) {
@@ -40,11 +45,14 @@ class AssignmentsModel extends CI_model
         return $subjects;
     }
 
-    public function getFinishedSubjects()
+    public function getFinishedSubjects($id = null)
     {
         $this->load->database();
-        $subjects_done = $this->db->get('subject_done')->result();
-        
+        if ($id) {
+          $subjects_done = $this->db->from('subject_done')->where('subject_id', $id)->get()->result();
+        } else {
+          $subjects_done = $this->db->get('subject_done')->result();
+        }
         return $subjects_done;
     }    
 
@@ -53,24 +61,14 @@ class AssignmentsModel extends CI_model
         $this->load->database();
         $getAnswers = $this->db->from('answers')->where('subject_id', $id)->get()->result();
         return($getAnswers);
-        // Dit was om zo wel de questions ans de anwers op te halen.
-        // $this->load->database();
-        // $getAnswers = $this->db->from('answers')->where('subject_id', $id)->get()->result();
-        // $getQuestions = $this->db->from('questions')->where('subject_id', $id)->get()->result();
-        
-        // $dataArray = array(
-        //     'answer' => $getQuestions,
-        //     'question' => $getAnswers
-        // );
-        // return($dataArray);
     }
     
     public function insertComment($Comment, $StudentId)
     {
         $this->load->database();
         $this->db->set('Comment', $Comment);
-        $this->db->where('id', $StudentId);
-         $this->db->update('answers');
+        $this->db->where('student_id', $StudentId);
+         $this->db->update('subject_done');
     }
 
     public function insertData($dataSubjects, $dataFormInputs)
