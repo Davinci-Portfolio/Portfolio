@@ -54,7 +54,7 @@ class questionnaires extends MY_Controller {
 	        	}
         	}
 		}
-		unset($answersArray[0]);
+		array_pop($answersArray);
 		foreach($answersArray as $answer) {
 			$this->AssignmentsModel->insertQuizAnswers($answer);	
 		}
