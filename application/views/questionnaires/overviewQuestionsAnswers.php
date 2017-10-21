@@ -2,7 +2,6 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>Your Questions - Anwers - Comments for - <?= $subjects[ARRAY_FIRST_INDEX]->subject ?></h1>
-    <?php dd($answers); ?>
   </section>
 
   <!-- Main content -->

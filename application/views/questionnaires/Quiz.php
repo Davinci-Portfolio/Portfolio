@@ -13,37 +13,35 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                          <form id="answersForm" method="post" action="<?php echo base_url();?>Questionnaires/sendQuizAnswers/">
                             <table id="answers" class="table table-bordered table-striped overviews" action="<?php echo base_url();?>assigments/uploadComment">
-                                <thead>
-                                    <tr>
-                                        <th class="no-sort">Question</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <form id="answersForm" method="post">
-                                    <?php foreach ($questions as $question) { ?>
-                                        <tr data-row-id="<?= $question->id ?>">
-                                            <td><?= $question->question ?></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <input size="100", type="text" data-id='<?= $question->id ?>' name="answer<?= $question->id ?>" value="">
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                    <input type="hidden" name="subjectId" value="<?= $subjects[0]->id ?>">
-                                </form>    
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th class="no-sort" colspan="3">Click here to submit your answers
-                                            <button class="sendBtn">
-                                                <i class="fa fa-send-o"></i>
-                                            </button>
-                                        </th>
-                                    </tr>
-                                </tfoot>
+                              <thead>
+                                <tr>
+                                  <th class="no-sort">Question</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <?php foreach ($questions as $question) { ?>
+                                  <tr data-row-id="<?= $question->id ?>">
+                                    <td><?= $question->question ?></td>
+                                  </tr>
+                                  <tr>
+                                    <td><input size="100" type="text" data-id='<?= $question->id ?>' name="answer"></td>
+                                  </tr>
+                                <?php } ?>
+                                <input type="hidden" name="subjectId" value="<?= $subjects[0]->id ?>">
+                                  <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">
+                                <input type="hidden" name="questionId" value="<?= $question->id ?>">
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <th class="no-sort" colspan="3">Click here to submit your answers
+                                    <button class="sendBtn" type="submit"><i class="fa fa-send-o"></i></button>
+                                  </th>
+                                </tr>
+                              </tfoot>
                             </table>
+                          </form>    
                         </div>
                     <!-- /.box-body -->
                     </div>

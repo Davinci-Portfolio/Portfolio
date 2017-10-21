@@ -24,7 +24,7 @@
                             </thead>
                             <tbody>
                                 <?php foreach($doneSubjects as $doneSubject) { ?>
-                                    <tr data-row-id="<?= $doneSubject->id ?>" class="answerRow">
+                                   <tr data-row-id="<?= $doneSubject->subject_id ?>" class="answerRow">
                                         <td><?= $doneSubject->name ?></td>
                                         <td><?= $doneSubject->ov_number ?></td>
                                         <td><?= $doneSubject->done ?></td>
