@@ -32,8 +32,13 @@
               <tfoot>
                 <?php foreach($subjectsDone as $subjectDone) { ?>
                   <tr>
-                    <td>comment -></td>
-                    <td><?= $subjectDone->Comment ?></td>
+                    <?php if($subjectDone->Comment) { ?>
+                      <td>Comment left by <?= $subjectDone->edited_by ?></td>
+                      <td><?= $subjectDone->Comment ?></td>
+                    <?php } else { ?>
+                      <td>The teacher has not left you any feedback jet.</td>
+                      <td></td>
+                    <?php } ?>
                   </tr>
                 <?php } ?>
               </tfoot>

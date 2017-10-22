@@ -15,7 +15,7 @@ class Assignments extends MY_Controller {
 
 	public function index()
 	{
-		$data['subjects'] = $this->AssignmentsModel->getSubjects();
+		$data['subjects'] = $this->AssignmentsModel->getSubjects('');
     $data['fileNameView'] = 'assignments/overviewAssignments';
     $data['students'] = $this->AssignmentsModel->getStudents();
 		crender('formPage', $data);
@@ -33,15 +33,23 @@ class Assignments extends MY_Controller {
 		$data['getAnswers'] = $this->AssignmentsModel->getAnswers($subject_id);
 		$data['getQuestions'] = $this->AssignmentsModel->getAssignments($subject_id);
 		$data['doneSubjects'] = $this->AssignmentsModel->getFinishedSubjects($subject_id);
+		$data['subjects'] = $this->AssignmentsModel->getSubjects($subject_id);
 		$data['fileNameView'] = 'studentAnswers';
 		crender('index', $data);
 	}
 
 	public function uploadComment()
 	{
-		$Comment = $_POST['comment'];
+		// $post = $this->input->post();
+		// var_dump($post);die();
 		$StudentId = $_POST['studentId'];
-		$this->AssignmentsModel->insertComment($Comment, $StudentId);
+		$Comment = $_POST['comment'];
+		$Username = $_POST['username'];
+		$dataArray = [
+			'comment' => $Comment, 
+			'username' => $Username
+		];
+		$this->AssignmentsModel->insertComment($dataArray, $StudentId);
 		redirect('Assignments/handedInSubjects');
 	}
 

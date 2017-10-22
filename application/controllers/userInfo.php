@@ -15,7 +15,7 @@ class userInfo extends MY_Controller {
 	public function index()
 	{
 		$data['infoUsers'] = $this->userInfoModel->getUserInfo();
-    	$data['fileNameView'] = 'userInfo';
+    $data['fileNameView'] = 'userInfo';
 		crender('index', $data);
 	}
 

@@ -14,7 +14,7 @@ class questionnaires extends MY_Controller {
 
 	public function index()
 	{
-		$data['subjects'] = $this->AssignmentsModel->getSubjects();
+		$data['subjects'] = $this->AssignmentsModel->getSubjects('');
     $data['fileNameView'] = 'questionnaires/overviewQuestionnaires';
 		crender('index', $data);
 	}

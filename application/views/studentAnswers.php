@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Answers</h1>
+    <h1>Answers form <?= $_SESSION['username']; ?> on <?= $subjects[0]->subject ?></h1>
   </section>
   <!-- Main content -->
   <section class="content">
@@ -19,7 +19,7 @@
                   <tr>
                     <th class="no-sort">Question</th>        
                     <th class="no-sort">Answer</th>         
-                    <th class="no-sort"></th>              
+                    <?php if($doneSubjects[0]->Comment) { ?><th class="no-sort"></th><?php } ?>             
                   </tr>
                 </thead>
                 <tbody>
@@ -27,20 +27,25 @@
                     <tr data-row-id="<?= $getQuestion->id ?>">
                       <td><?= $getQuestion->question ?></td>
                   <?php } foreach($getAnswers as $getAnswer) { ?>
-                      <td><?= $getAnswer->answer ?></td>
-                      <td></td>  
+                      <td><?= $getAnswer->answer ?></td> 
+                      <?php if($doneSubjects[0]->Comment) { ?><td class="no-sort"></td><?php } ?>
                     </tr>
                   <?php } ?>  
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td class="control-label">Leave a Comment</td>
-                    <td><input type="text" name="comment" class="form-control" placeholder="Your comment"></td>
-                    <td><button type="submit" class="btn btn-primary">Submit</td>
+                    <?php if($doneSubjects[0]->Comment) { ?>                    
+                      <td><input type="text" name="comment" class="form-control" placeholder="Edit your comment"></td>
+                      <td><?= $doneSubjects[0]->Comment ?></td>
+                    <?php } else { ?>
+                      <td><input type="text" name="comment" class="form-control" placeholder="Leave your comment"></td>
+                    <?php } ?>
+                      <td><button type="submit" class="btn btn-primary">Submit</td>
                   </tr> 
                 </tfoot>              
               </table>
                 <input type="hidden" name="studentId" value="<?= $doneSubjects[0]->subject_id ?>">
+                <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">
             </form>
           </div>
         <!-- /.box-body -->

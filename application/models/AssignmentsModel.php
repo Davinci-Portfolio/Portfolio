@@ -9,11 +9,11 @@ class AssignmentsModel extends CI_model
         return $topics;
     }
 
-    public function getSubjects($id = null)
+    public function getSubjects($subject_id)
     {
         $this->load->database();
-        if ($id) {
-          $getSubjects = $this->db->from('subjects')->where('subject_id', $id)->get();
+        if ($subject_id) {
+          $getSubjects = $this->db->from('subjects')->where('subject_id', $subject_id)->get();
           $subjects = $getSubjects->result();
         } else {
           $getSubjects = $this->db->get('subjects');
@@ -63,12 +63,16 @@ class AssignmentsModel extends CI_model
         return($getAnswers);
     }
 
-    public function insertComment($Comment, $StudentId)
+    public function insertComment($dataArray, $StudentId)
     {
         $this->load->database();
-        $this->db->set('Comment', $Comment);
+        $query = array (
+          'edited_by' => $dataArray['username'],
+          'Comment' => $dataArray['comment']
+        );
+        $this->db->set($query);
         $this->db->where('subject_id', $StudentId);
-         $this->db->update('subject_done');
+        $this->db->update('subject_done');
     }
 
     public function insertData($dataSubjects, $dataFormInputs)
