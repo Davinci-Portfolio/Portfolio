@@ -10,8 +10,11 @@ class userInfoModel extends CI_model
     return $userInfo;
   }  
 
-  public function uploadImg()
+  public function incertProfileImgPath($name, $Post)
   {
   	$this->load->database();
+		$this->db->set('profile_img', $Post['file_name']);
+    $this->db->where('name', $name);
+    $this->db->update('students');
   }
 }

@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Handed in Subjects</h1>
+        <h1>Finished subjects</h1>
     </section>
 
     <!-- Main content -->

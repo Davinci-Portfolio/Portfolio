@@ -22,19 +22,18 @@ class userInfo extends MY_Controller {
 
 	public function do_upload()
   {
-  	// $answers = $this->input->post();
-
-    $config['upload_path'] = './user_guide/_images';
+  	$name = $_POST['name'];
+    $config['upload_path'] = './public/adminLTE/img/';
     $config['allowed_types'] = 'jpg|png';
     $config['max_size'] = 2048;
     $config['max_width'] = 2048;
     $config['max_height'] = 2048;
-		//var_dump($config);die();
     $this->load->library('upload', $config);
 
     if ( ! $this->upload->do_upload('userfile')) {
     }
     else {
+      $this->userInfoModel->incertProfileImgPath($name, $this->upload->data());
       $data = array('upload_data' => $this->upload->data());
      	redirect('userInfo/index');
     }

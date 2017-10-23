@@ -15,14 +15,14 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
       <?php
-         echo link_tag('public/adminLTE/css/bootstrap.min.css');
-         echo link_tag('public/adminLTE/css/AdminLTE.min.css');
-         echo link_tag('public/adminLTE/css/skins/skin-blue.min.css');
-         echo link_tag('public/adminLTE/css/datatables/dataTables.bootstrap.css');
-         echo link_tag('public/adminLTE/plugins/datepicker/datepicker3.css');
-         foreach ($CSSFileNames as $CSSFileName) {
-              echo link_tag($CSSFileName);
-         }
+        echo link_tag('public/adminLTE/css/bootstrap.min.css');
+        echo link_tag('public/adminLTE/css/AdminLTE.min.css');
+        echo link_tag('public/adminLTE/css/skins/skin-blue.min.css');
+        echo link_tag('public/adminLTE/css/datatables/dataTables.bootstrap.css');
+        echo link_tag('public/adminLTE/plugins/datepicker/datepicker3.css');
+        foreach ($CSSFileNames as $CSSFileName) {
+          echo link_tag($CSSFileName);
+        }
       ?>
    </head>
    <body class="hold-transition skin-blue sidebar-mini">
@@ -51,16 +51,16 @@
                      <!-- Menu Toggle Button -->
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="<?php echo base_url();?>public/adminLTE/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                        <img src="<?php echo base_url();?>public/adminLTE/img/<?= $_SESSION['infoUsers']; ?>" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <span class="hidden-xs">
-                        <?= $_SESSION['username']; ?>
+                          <?= $_SESSION['username']; ?>
                         </span>
                      </a>
                      <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                           <img src="<?php echo base_url();?>public/adminLTE/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                           <img src="<?php echo base_url();?>public/adminLTE/img/<?= $_SESSION['infoUsers']; ?>" class="img-circle" alt="User Image">
                            <p>
                               <?= $_SESSION['username']; ?> - Web Developer
                               <small>Member since July. 1908</small>
@@ -92,7 +92,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                <div class="pull-left image">
-                  <img src="<?php echo base_url();?>public/adminLTE/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="<?php echo base_url();?>public/adminLTE/img/<?= $_SESSION['infoUsers']; ?>" class="img-circle" alt="User Image">
                </div>
                <div class="pull-left info">
                   <p><?= $_SESSION['username']; ?></p>
@@ -129,7 +129,7 @@
                 </li>
                 <li><a href="<?php echo site_url('Assignments/index') ?>"><i class="fa fa-link"></i> <span>Assignments (docent)</span></a></li>
                 <li><a href="<?php echo site_url('questionnaires/index') ?>"><i class="fa fa-link"></i> <span>Assignments Students</span></a></li>
-                <li><a href="<?php echo site_url('Assignments/handedInSubjects') ?>"><i class="fa fa-link"></i> <span>handedInSubjects</span></a></li>
+                <li><a href="<?php echo site_url('Assignments/handedInSubjects') ?>"><i class="fa fa-link"></i> <span>Finished subjects</span></a></li>
               <?php } else { ?> <!-- if a normal user is loged in show : -->
                 <li><a href="<?php echo site_url('questionnaires/index') ?>"><i class="fa fa-link"></i> <span>Assignments Students</span></a></li>    
               <?php } ?>       
