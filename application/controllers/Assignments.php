@@ -89,7 +89,7 @@ class Assignments extends MY_Controller {
 			'cohort' => $dataFormCohort
 		];
 		$this->AssignmentsModel->insertData($dataSubjects, $dataFormInput);
-		redirect('Assignments/index');
+		//redirect('Assignments/index');
 	}
 
 	public function updateData()

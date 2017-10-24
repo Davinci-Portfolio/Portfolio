@@ -101,11 +101,11 @@ $db['develop'] = array(
     'save_queries' => TRUE
 );
 $db['accept'] = array(
-    'dsn'  => 'mysql:host=localhost; dbname=portfolio; charset=utf8;',
+    'dsn'  => 'mysql:host=localhost; dbname=portfolio_database; charset=utf8;',
     'hostname' => 'localhost',
-    'username' => 'root',
-    'password' => '',
-    'database' => 'portfolio',
+    'username' => 'portfolio_admin',
+    'password' => 'LjkmyQlGf',
+    'database' => 'portfolio_database',
     'dbdriver' => 'pdo',
     'dbprefix' => '',
     'pconnect' => FALSE,
