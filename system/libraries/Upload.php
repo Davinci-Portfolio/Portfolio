@@ -610,7 +610,7 @@ class CI_Upload {
 				'image_width'		=> $this->image_width,
 				'image_height'		=> $this->image_height,
 				'image_type'		=> $this->image_type,
-				'image_size_str'	=> $this->image_size_str,
+				'image_size_str'	=> $this->image_size_str
 			);
 
 		if ( ! empty($index))

@@ -7,15 +7,16 @@ class UploadModel extends CI_Model {
     }
 
     public function insertFileName($fileData)
-    {        
-    	$this->load->database();
-		$data = [
-			'filename' => $fileData['file_name'],
-			'file_size' => $fileData['file_size'],
-			'file_date' => date("d-m-Y"),
-			'file_active' => 1
-		];
-        $this->db->insert('imports', $data);
+    {   
+        $this->load->database();
+        foreach ($fileData as $fileData) {
+            $data = [
+                'name' => $fileData['name'],
+                'ov_number' => $fileData['ov_number'],
+                'klas' => $fileData['klas']
+            ];
+            $this->db->insert('students', $data);   
+        }     
     }
 
     public function uploadAnswers($fileData)
