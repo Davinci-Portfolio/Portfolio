@@ -39,8 +39,8 @@ class questionnaires extends MY_Controller {
 
 	public function sendQuizAnswers()
 	{
-		// $answer = $this->input->post();
-		// var_dump($answer);die();
+		$answer = $this->input->post();
+		var_dump($answer);die();
 		$username = $_POST['username'];
     $answer = $_POST['answer'];
     $subjectId = $_POST['subjectId'];

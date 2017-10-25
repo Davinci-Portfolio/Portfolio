@@ -14,24 +14,24 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table class="table table-bordered table-striped overviews">
-                            <thead>
-                                <tr>
-                                    <th>Student</th>
-                                    <th>Ov-number</th>
-                                    <th>Finished?</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach($doneSubjects as $doneSubject) { ?>
-                                   <tr data-row-id="<?= $doneSubject->subject_id ?>" class="answerRow">
-                                        <td><?= $doneSubject->name ?></td>
-                                        <td><?= $doneSubject->ov_number ?></td>
-                                        <td><?= $doneSubject->done ?></td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
+                      <table class="table table-bordered table-striped overviews">
+                        <thead>
+                          <tr>
+                            <th>Student</th>
+                            <th>Ov-number</th>
+                            <th>Finished?</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php foreach($doneSubjects as $doneSubject) { ?>
+                           <tr data-row-id="<?= $doneSubject->subject_id ?>" class="answerRow">
+                              <td><?= $doneSubject->name ?></td>
+                              <td><?= $doneSubject->ov_number ?></td>
+                              <td><?= $doneSubject->done ?></td>
+                            </tr>
+                          <?php } ?>
+                        </tbody>
+                      </table>
                     </div>
                 <!-- /.box-body -->
                 </div>

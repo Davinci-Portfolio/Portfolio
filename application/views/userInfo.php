@@ -12,7 +12,11 @@
             <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>/public/adminLTE/img/<?= $infoUsers[0]->profile_img ?>" alt="Profile img">
             
             <?= form_open_multipart('userInfo/do_upload'); ?>
-            <br><input class="btn input-file" type="file" name="userfile">
+            <br>
+            <label class="btn btn-default btn-file">
+              Browse
+              <input class="" type="file" name="userfile">
+            </label>
             <button class="btn btn-primary input-file" type="submit" value="upload">submit</button><br>
             <h3 class="profile-username text-center"><?= $infoUsers[0]->name ?></h3>
             <p class="text-muted text-center">Software Engineer</p>

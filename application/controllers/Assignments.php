@@ -40,9 +40,7 @@ class Assignments extends MY_Controller {
 
 	public function uploadComment()
 	{
-		// $post = $this->input->post();
-		// var_dump($post);die();
-		$StudentId = $_POST['studentId'];
+		$StudentId = $_POST['subject_id'];
 		$Comment = $_POST['comment'];
 		$Username = $_POST['username'];
 		$dataArray = [
@@ -50,7 +48,7 @@ class Assignments extends MY_Controller {
 			'username' => $Username
 		];
 		$this->AssignmentsModel->insertComment($dataArray, $StudentId);
-		redirect('Assignments/handedInSubjects');
+		redirect('Assignments/studentAnswers/' . $StudentId);
 	}
 
 	public function formPage($btnElement, $id = null)

@@ -12,14 +12,13 @@
             <h3 class="box-title">All handed in Assigments.</h3>
           </div>
           <!-- /.box-header -->
-          <div class="box-body">
-            <form method="post" action="<?php echo base_url();?>Assignments/uploadComment/">
+          <form method="post" action="<?php echo base_url();?>Assignments/uploadComment/">
+            <div class="box-body">
               <table class="table table-bordered table-striped overviews">
                 <thead>
                   <tr>
                     <th class="no-sort">Question</th>        
-                    <th class="no-sort">Answer</th>         
-                    <?php if($doneSubjects[0]->Comment) { ?><th class="no-sort"></th><?php } ?>             
+                    <th class="no-sort">Answer</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -28,11 +27,18 @@
                       <td><?= $getQuestion->question ?></td>
                   <?php } foreach($getAnswers as $getAnswer) { ?>
                       <td><?= $getAnswer->answer ?></td> 
-                      <?php if($doneSubjects[0]->Comment) { ?><td class="no-sort"></td><?php } ?>
                     </tr>
                   <?php } ?>  
                 </tbody>
-                <tfoot>
+                <hr>              
+              </table>
+                <input type="hidden" name="subject_id" value="<?= $doneSubjects[0]->subject_id ?>">
+                <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">
+            </div>
+            <hr>
+            <div class="box-body">
+              <table class="table table-bordered table-striped overviews">
+                <tbody>
                   <tr>
                     <?php if($doneSubjects[0]->Comment) { ?>                    
                       <td><input type="text" name="comment" class="form-control" placeholder="Edit your comment"></td>
@@ -40,14 +46,12 @@
                     <?php } else { ?>
                       <td><input type="text" name="comment" class="form-control" placeholder="Leave your comment"></td>
                     <?php } ?>
-                      <td><button type="submit" class="btn btn-primary">Submit</td>
+                      <td class="smallWidth"><button type="submit" class="btn btn-primary">Submit</td>
                   </tr> 
-                </tfoot>              
+                </tbody>             
               </table>
-                <input type="hidden" name="studentId" value="<?= $doneSubjects[0]->subject_id ?>">
-                <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">
-            </form>
-          </div>
+            </div>
+          </form>
         <!-- /.box-body -->
         </div>
       <!-- /.box -->
