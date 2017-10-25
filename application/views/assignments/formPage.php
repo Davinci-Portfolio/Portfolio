@@ -18,7 +18,7 @@
                   <form id="formInput">
                   <div class="box-body">
                     <input name="title" class="headText" type="text" placeholder="Titel vragenlijst">
-                           <select name="topic" class="form-control" placeholder="Selecteer een subtopic">
+                           <select name="topic" class="form-control">
                             <option value="" disabled selected hidden>Selecteer een subtopic</option>
                             <?php 
                             foreach($topics as $topic)
