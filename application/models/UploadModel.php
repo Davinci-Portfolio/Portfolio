@@ -6,17 +6,15 @@ class UploadModel extends CI_Model {
             parent::__construct();
     }
 
-    public function insertFileName($fileData)
+    public function csvData($csvData)
     {   
         $this->load->database();
-        foreach ($fileData as $fileData) {
-            $data = [
-                'name' => $fileData['name'],
-                'ov_number' => $fileData['ov_number'],
-                'klas' => $fileData['klas']
-            ];
-            $this->db->insert('students', $data);   
-        }     
+        $data = [
+            'name' => $csvData['Naam'],
+            'ov_number' => $csvData['OV Nummer'],
+            'klas' => $csvData['Klas']
+        ];
+        $this->db->insert('students', $data);      
     }
 
     public function uploadAnswers($fileData)

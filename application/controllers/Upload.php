@@ -15,7 +15,7 @@ class Upload extends MY_Controller {
 
   public function index($error = null)
   {
-    crender('index', array('error' => ''));
+    crender('index', array('error' => $error));
   }
 
   public function readCsv($fileName) {
@@ -24,8 +24,6 @@ class Upload extends MY_Controller {
 
   public function uploadFile() 
   { 
-    $csvData = $_POST['csvdata'];
-    
     $row = [];
     $config['upload_path']   = './uploads/'; 
     $config['allowed_types'] = 'csv|xls|xlsx|xml'; 
@@ -43,8 +41,10 @@ class Upload extends MY_Controller {
     $file = fopen('./uploads/' . $this->upload->data('file_name'),"r");	
 
     $csvData = $this->readCsv($fileName);
-    $this->UploadModel->insertFileName($csvData);
-     $this->load->view('upload', $data);
+    var_dump($csvData); die;  
+    $this->UploadModel->csvData($csvData);
+    //$this->UploadModel->insertFileName($csvData);
+    $this->load->view('upload', $data);
     //redirect('Overview/index');        
   } 
 
