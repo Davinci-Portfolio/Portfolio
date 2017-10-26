@@ -75,7 +75,7 @@ if( ! function_exists('loginRender'))
         $data['JSFileNames'] = GetJSFiles($data);
         $data['CSSFileNames'] = GetCSSFiles($data);
         $ci =& get_instance();
-        $ci->load->view($data['fileNameView']);
+        $ci->load->view($data['fileNameView'], $data);
     }
 }
 

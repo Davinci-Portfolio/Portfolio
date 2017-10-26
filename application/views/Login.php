@@ -32,7 +32,8 @@
 
                           <form method="post" action="<?php echo base_url();?>Login/Login">
                             <div class="form-group has-feedback">
-                              <input type="text" name="Username" class="form-control" placeholder="Email">
+                              <span><?= $error ?></span>
+                              <input type="text" name="Username" class="form-control" placeholder="Name">
                               <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">

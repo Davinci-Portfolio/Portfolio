@@ -7,23 +7,22 @@ class Login extends MY_Controller
   {
     parent::__construct();
     $this->load->model('loginModel');
-    $this->load->library('session');
+    $this->load->library('session'); 
   }
-
+  
   public function index()
   {
-     
-      // var_dump($infoUsers); die();
-      if ($this->session->auth == 'admin') {
-          redirect('Overview/index');
-      } elseif ($this->session->auth == 'user') {
-          redirect('questionnaires/index');
-      }
-      loginRender('index');
+    $data['error'] = $this->Login->$errorMessage; 
+    var_dump($errorMessage);
+
+    var_dump($data);
+    loginRender('index', $data);
   }
 
   public function Login()
   { 
+
+    $errorMessage = '';
     $userdata = [
       'username' => $_POST['Username'],
       'password' => $_POST['Password'],
@@ -33,15 +32,15 @@ class Login extends MY_Controller
     ];
              
     $checkAdmin = '1';
-    $data = $this->loginModel->getUserData($userdata['username']); // data van de db
+    $students = $this->loginModel->getUserData($userdata['username']); // data van de db
 
-    if ($userdata['username'] == $data[0]->name && $userdata['password'] == $data[0]->wachtwoord) {
+    if ($userdata['username'] == $students[0]->name && $userdata['password'] == $students[0]->wachtwoord) {
 
         $userdata['logged_in'] = true;
-        $userdata['infoUsers'] = $data[0]->profile_img;
+        $userdata['infoUsers'] = $students[0]->profile_img;
 
         $this->session->set_userdata($userdata);
-      if ($checkAdmin == $data[0]->admin) { //check if admin is loggedin      
+      if ($checkAdmin == $students[0]->admin) { //check if admin is loggedin      
         
         $userdata['auth'] = "admin"; 
 
@@ -54,14 +53,18 @@ class Login extends MY_Controller
         $this->session->set_userdata($userdata);
         redirect('questionnaires/index');
       }
-    } elseif ($userdata['username'] != $data[0]->name) {
-      return "Verkeerde gebruikers gegevens";
+    } elseif ($userdata['username'] != $students[0]->name) {
+      $errorMessage = "Verkeerde username";
+      $this->index($errorMessage); 
+      redirect('');
       exit;
-        // error = .... 
-        // $this->view ..... login
-    } elseif ($userdata['password'] != $data[0]->ov_number){
-      echo "Verkeerde wachtwoord gegevens";
+
+    } elseif ($userdata['password'] != $students[0]->wachtwoord){
+      
+      $this->index->$errorMessage = "Verkeerd Wachtwoord";
+      redirect('');
       exit;
+
     }
            
   }
