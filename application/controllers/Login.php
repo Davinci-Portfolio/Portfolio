@@ -10,12 +10,14 @@ class Login extends MY_Controller
     $this->load->library('session'); 
   }
   
-  public function index()
+  public function index($errorMessage = NULL)
   {
-    $data['error'] = $this->Login->$errorMessage; 
-    var_dump($errorMessage);
-
-    var_dump($data);
+    if ($errorMessage) { 
+      $data['error'] = $errorMessage; 
+      var_dump($errorMessage);
+    } else {
+      $data['error'] = ''; 
+    }
     loginRender('index', $data);
   }
 
@@ -53,18 +55,10 @@ class Login extends MY_Controller
         $this->session->set_userdata($userdata);
         redirect('questionnaires/index');
       }
-    } elseif ($userdata['username'] != $students[0]->name) {
-      $errorMessage = "Verkeerde username";
+    } else {
+      $errorMessage = "Verkeerde username of password";
       $this->index($errorMessage); 
-      redirect('');
       exit;
-
-    } elseif ($userdata['password'] != $students[0]->wachtwoord){
-      
-      $this->index->$errorMessage = "Verkeerd Wachtwoord";
-      redirect('');
-      exit;
-
     }
            
   }
