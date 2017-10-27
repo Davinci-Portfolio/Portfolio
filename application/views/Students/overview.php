@@ -28,7 +28,6 @@
                                     <td><?= $student->name ?></td>
                                     <td><?= $student->ov_number ?></td>
                                     <td><?= $student->klas ?></td>
-
                                 </tr>
                                 <?php } ?>
                             </tbody>

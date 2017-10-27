@@ -12,19 +12,20 @@ class Login extends MY_Controller
   
   public function index($errorMessage = NULL)
   {
-    if ($errorMessage) { 
-      $data['error'] = $errorMessage; 
-      var_dump($errorMessage);
+    if ($errorMessage) {
+      $data['error'] = $errorMessage;
+      var_dump($data['error']); 
+      // redirect('', $data);
+      loginRender('index', $data);
+      redirect('');
     } else {
       $data['error'] = ''; 
+      loginRender('index', $data);
     }
-    loginRender('index', $data);
   }
 
   public function Login()
   { 
-
-    $errorMessage = '';
     $userdata = [
       'username' => $_POST['Username'],
       'password' => $_POST['Password'],

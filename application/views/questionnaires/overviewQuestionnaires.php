@@ -23,7 +23,7 @@
               </thead>
               <tbody>
                 <?php foreach ($subjects as $subject) { ?>
-                  <tr data-row-id="<?= $subject->id ?>" class="subjectRow">
+                  <tr title="Open <?= $subject->subject ?>" data-row-id="<?= $subject->id ?>" class="subjectRow">
                     <td><?= $subject->subject ?></td>
                     <td><?= $subject->subtopic ?></td>
                   </tr>   
@@ -45,7 +45,7 @@
               </thead>
               <tbody>
                 <?php foreach ($subjects as $subject) { ?>
-                  <tr data-row-id="<?= $subject->id ?>" class="results">
+                  <tr title="Open <?= $subject->subject ?>" data-row-id="<?= $subject->id ?>" class="results">
                     <td><?= $subject->subject ?></td>
                     <td><?= $subject->subtopic ?></td>
 	                </tr>   

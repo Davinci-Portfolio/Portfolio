@@ -29,8 +29,7 @@
                       <td><?= $getAnswer->answer ?></td> 
                     </tr>
                   <?php } ?>  
-                </tbody>
-                <hr>              
+                </tbody>            
               </table>
                 <input type="hidden" name="subject_id" value="<?= $doneSubjects[0]->subject_id ?>">
                 <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">

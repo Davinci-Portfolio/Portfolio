@@ -33,9 +33,9 @@
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th class="no-sort" colspan="3">Click here to submit your answers
-                      <button class="sendBtn" type="submit"><i class="fa fa-send-o"></i></button>
-                    </th>
+                    <td class="no-sort " colspan="3">
+                      <button title="send answers" class="btn btn-primary" type="submit">send</button>
+                    </td>
                   </tr>
                 </tfoot>
               </table>
