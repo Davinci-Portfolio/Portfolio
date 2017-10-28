@@ -49,6 +49,11 @@ th {
     width: 8%;
     white-space: nowrap;
 }
+
+.fullWidth {
+    width: 100%!important;
+    white-space: nowrap;
+}
 /*----------------------------------------------------------------*/
 /*-alerts-to-user-------------------------------------------------*/
 .error {

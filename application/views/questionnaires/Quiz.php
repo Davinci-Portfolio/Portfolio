@@ -24,21 +24,21 @@
                       <td><?= $question->question ?></td>
                     </tr>
                     <tr>
-                      <td><input size="100" type="text" data-id='<?= $question->id ?>' name="<?= $question->subject_id ?>"></td>
+                      <td><input class="fullWidth form-control" type="text" placeholder="Your answer" name="<?= $question->subject_id ?>" data-id='<?= $question->id ?>'></td>
                     </tr>
                   <?php } ?>
-                  <input type="hidden" name="subjectId" value="<?= $subjects[0]->id ?>">
-                  <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">
-                  <input type="hidden" name="questionId" value="<?= $question->id ?>">
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td class="no-sort " colspan="3">
-                      <button title="send answers" class="btn btn-primary" type="submit">send</button>
+                    <td class="no-sort lead smallWidth" colspan="3">
+                      Submit your answers - <button title="Submit answers" class="btn btn-primary" type="submit">Submit</button>
                     </td>
                   </tr>
                 </tfoot>
-              </table>
+              </table> 
+                <input type="hidden" name="subjectId" value="<?= $subjects[0]->id ?>">
+                <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">
+                <input type="hidden" name="questionId" value="<?= $question->id ?>">
             </form>    
           </div>
         <!-- /.box-body -->

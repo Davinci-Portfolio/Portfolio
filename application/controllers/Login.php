@@ -14,7 +14,7 @@ class Login extends MY_Controller
   {
     if ($errorMessage) {
       $data['error'] = $errorMessage;
-      var_dump($data['error']); 
+      var_dump($data['error']); die;
       // redirect('', $data);
       loginRender('index', $data);
       redirect('');

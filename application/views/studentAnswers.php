@@ -40,16 +40,29 @@
                 <tbody>
                   <tr>
                     <?php if($doneSubjects[0]->Comment) { ?>                    
-                      <td><input type="text" name="comment" class="form-control" placeholder="Edit your comment"></td>
-                      <td><?= $doneSubjects[0]->Comment ?></td>
+                      <td><input type="text" name="comment" class="form-control" autocomplete="off" placeholder="Edit your feedback"></td>
                     <?php } else { ?>
-                      <td><input type="text" name="comment" class="form-control" placeholder="Leave your comment"></td>
+                      <td><input type="text" name="comment" class="form-control" autocomplete="off"  placeholder="Leave your feedback"></td>
                     <?php } ?>
-                      <td class="smallWidth"><button type="submit" class="btn btn-primary">Submit</td>
-                  </tr> 
-                </tbody>             
+                    <td class="smallWidth">
+                      <button type="submit" class="btn btn-primary" title="submit feedback">Submit feedback</button>
+                    </td>
+                  </tr>
+                </tbody> 
               </table>
             </div>
+            <?php if($doneSubjects[0]->Comment) { ?>  
+              <div class="box-body">
+                <table class="table table-bordered table-striped overviews">  
+                  <tfoot> 
+                    <tr>
+                      <td class="lead smallWidth">Feedback :</td>
+                      <td class="lead"><?= $doneSubjects[0]->Comment ?></td>
+                    </tr>
+                  </tfoot>   
+                </table>
+              </div>       
+            <?php } ?>
           </form>
         <!-- /.box-body -->
         </div>
