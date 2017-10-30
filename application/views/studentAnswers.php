@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Answers form <?= $_SESSION['username']; ?> on <?= $subjects[0]->subject ?></h1>
+    <h1>Answers from <?= $_SESSION['username']; ?> on <?= $subjects[0]->subject ?></h1>
   </section>
   <!-- Main content -->
   <section class="content">

@@ -15,14 +15,15 @@ class userInfo extends MY_Controller {
 
 	public function index()
 	{
-		$data['infoUsers'] = $this->userInfoModel->getUserInfo();
+    $name = $_SESSION['username'];
+		$data['infoUsers'] = $this->userInfoModel->getUserInfo($name);
     $data['fileNameView'] = 'userInfo';
 		crender('index', $data);
 	}
 
 	public function do_upload()
   {
-  	$name = $_POST['name'];
+  	$name = $_SESSION['username'];
     $config['upload_path'] = './public/adminLTE/img/';
     $config['allowed_types'] = 'jpg|png';
     $config['max_size'] = 2048;
@@ -34,7 +35,6 @@ class userInfo extends MY_Controller {
     }
     else {
       $this->userInfoModel->incertProfileImgPath($name, $this->upload->data());
-      $data = array('upload_data' => $this->upload->data());
      	redirect('userInfo/index');
     }
   }
