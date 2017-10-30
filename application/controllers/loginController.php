@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends MY_Controller
+class loginController extends MY_Controller
 {
 	function __construct()
   {
@@ -17,14 +17,28 @@ class Login extends MY_Controller
       var_dump($data['error']); die;
       // redirect('', $data);
       loginRender('index', $data);
+      $data['fileNameView'] = 'Login';
       redirect('');
     } else {
       $data['error'] = ''; 
+      $data['fileNameView'] = 'Login';
       loginRender('index', $data);
     }
   }
 
-  public function Login()
+  public function checkProfileImg($imgInfo)
+  {
+    var_dump($imgInfo);
+    // $userdata = [
+    //   'username' => $_POST['Username'],
+    //   'password' => $_POST['Password'],
+    //   'infoUsers' => null,
+    //   'auth' => null,
+    //   'logged_in' => false
+    // ];
+  }
+
+  public function loginCheck()
   { 
     $userdata = [
       'username' => $_POST['Username'],
@@ -33,7 +47,7 @@ class Login extends MY_Controller
       'auth' => null,
       'logged_in' => false
     ];
-             
+
     $checkAdmin = '1';
     $students = $this->loginModel->getUserData($userdata['username']); // data van de db
 

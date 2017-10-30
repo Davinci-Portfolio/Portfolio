@@ -20,7 +20,6 @@
             <button class="btn btn-primary input-file" type="submit" value="upload">submit</button><br>
             <h3 class="profile-username text-center"><?= $_SESSION['username']; ?></h3>
             <p class="text-muted text-center">Software Engineer</p>
-            <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">
           </div>
           <!-- /.box-body -->
         </div>

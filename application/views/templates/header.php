@@ -72,7 +72,7 @@
                               <a href="<?php echo site_url('userInfo/index');?>" class="btn btn-default btn-flat">Profile</a>
                            </div>
                            <div class="pull-right">
-                              <a href="<?php echo site_url('Login/userLogout');?>" id="UserLogout" class="btn btn-default btn-flat">Sign out</a>
+                              <a href="<?php echo site_url('loginController/userLogout');?>" id="UserLogout" class="btn btn-default btn-flat">Sign out</a>
                            </div>
                         </li>
                      </ul>

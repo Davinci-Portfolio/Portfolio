@@ -31,12 +31,11 @@ class userInfo extends MY_Controller {
     $config['max_height'] = 2048;
     $this->load->library('upload', $config);
 
-    if ( ! $this->upload->do_upload('userfile')) {
-    }
-    else {
+    if ($this->upload->do_upload('userfile')) {
       $this->userInfoModel->incertProfileImgPath($name, $this->upload->data());
-     	redirect('userInfo/index');
+      redirect('userInfo/index');
     }
+    else {}
   }
 
 }
