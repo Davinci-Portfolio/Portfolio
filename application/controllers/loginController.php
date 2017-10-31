@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class loginController extends MY_Controller
+class LoginController extends MY_Controller
 {
 	function __construct()
   {
@@ -24,18 +24,6 @@ class loginController extends MY_Controller
       $data['fileNameView'] = 'Login';
       loginRender('index', $data);
     }
-  }
-
-  public function checkProfileImg($imgInfo)
-  {
-    var_dump($imgInfo);
-    // $userdata = [
-    //   'username' => $_POST['Username'],
-    //   'password' => $_POST['Password'],
-    //   'infoUsers' => null,
-    //   'auth' => null,
-    //   'logged_in' => false
-    // ];
   }
 
   public function loginCheck()
