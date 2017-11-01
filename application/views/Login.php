@@ -20,7 +20,7 @@
                         <div class="login-box-body">
                           <p class="login-box-msg">Sign in to start your session</p>
 
-                          <form method="post" action="<?php echo base_url();?>loginController/loginCheck">
+                          <form method="post" action="<?php echo base_url();?>login/loginCheck">
                             <?php if($error) { ?>
                               <p class="callout callout-warning"><?= var_dump($error); ?></p>
                             <?php } ?>                            

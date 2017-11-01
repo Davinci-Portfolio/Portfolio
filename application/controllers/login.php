@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class LoginController extends MY_Controller
+class login extends MY_Controller
 {
 	function __construct()
   {
@@ -17,11 +17,9 @@ class LoginController extends MY_Controller
       var_dump($data['error']); die;
       // redirect('', $data);
       loginRender('index', $data);
-      $data['fileNameView'] = 'Login';
       redirect('');
     } else {
       $data['error'] = ''; 
-      $data['fileNameView'] = 'Login';
       loginRender('index', $data);
     }
   }
