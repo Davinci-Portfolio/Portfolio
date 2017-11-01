@@ -8,10 +8,11 @@ class UploadModel extends CI_Model {
 
     public function csvData($csvData)
     {   
+        var_dump($csvData);die;
         $this->load->database();
         $data = [
-            'name' => $csvData['Naam'],
             'ov_number' => $csvData['OV Nummer'],
+            'name' => $csvData['Voornaam'],
             'klas' => $csvData['Klas']
         ];
         $this->db->insert('students', $data);      

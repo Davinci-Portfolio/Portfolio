@@ -20,6 +20,7 @@ class Upload extends MY_Controller {
 
   public function readCsv($fileName) {
     return $data['csvData'] = $this->csvreader->parse_file(base_url() . 'uploads/' . $fileName);
+    
   }
 
   public function uploadFile() 
@@ -41,7 +42,7 @@ class Upload extends MY_Controller {
     $file = fopen('./uploads/' . $this->upload->data('file_name'),"r");	
 
     $csvData = $this->readCsv($fileName);
-    var_dump($csvData); die;  
+     
     $this->UploadModel->csvData($csvData);
     //$this->UploadModel->insertFileName($csvData);
     $this->load->view('upload', $data);
