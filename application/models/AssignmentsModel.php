@@ -9,11 +9,16 @@ class AssignmentsModel extends CI_model
         return $topics;
     }
 
-    public function getSubjects()
+    public function getSubjects($subject_id)
     {
         $this->load->database();
-        $getSubjects = $this->db->get('subjects');
-        $subjects = $getSubjects->result();
+        if ($subject_id) {
+          $getSubjects = $this->db->from('subjects')->where('subject_id', $subject_id)->get();
+          $subjects = $getSubjects->result();
+        } else {
+          $getSubjects = $this->db->get('subjects');
+          $subjects = $getSubjects->result();
+        }
         foreach ($subjects as $subject) {
             $subject->display = ($subject->display == 1 ? 'open' : 'close');
             if ($subject->display_date == null) {
@@ -40,44 +45,34 @@ class AssignmentsModel extends CI_model
         return $subjects;
     }
 
-    public function getFinishedSubjects()
+    public function getFinishedSubjects($id = null)
     {
         $this->load->database();
-        $subjects_done = $this->db->get('subject_done')->result();
-        
+        if ($id) {
+          $subjects_done = $this->db->from('subject_done')->where('subject_id', $id)->get()->result();
+        } else {
+          $subjects_done = $this->db->get('subject_done')->result();
+        }
         return $subjects_done;
     }    
 
-    public function getAnswers($id = null)
-    {
+    public function getAnswers($subject_id)
+    { 
         $this->load->database();
-        $getAnswers = $this->db->from('answers')->where('subject_id', $id)->get()->result();
+        $getAnswers = $this->db->from('answers')->where('subject_id', $subject_id)->get()->result();
         return($getAnswers);
-        // Dit was om zo wel de questions ans de anwers op te halen.
-        // $this->load->database();
-        // $getAnswers = $this->db->from('answers')->where('subject_id', $id)->get()->result();
-        // $getQuestions = $this->db->from('questions')->where('subject_id', $id)->get()->result();
-        
-        // $dataArray = array(
-        //     'answer' => $getQuestions,
-        //     'question' => $getAnswers
-        // );
-        // return($dataArray);
     }
 
-        public function getQuestions($id = null)
-        {
-            $this->load->database();
-            $getQuestions = $this->db->from('questions')->where('subject_id', $id)->get()->result();
-            return($getQuestions);
-        }
-
-    public function insertComment($Comment, $StudentId)
+    public function insertComment($dataArray, $StudentId)
     {
         $this->load->database();
-        $this->db->set('Comment', $Comment);
-        $this->db->where('id', $StudentId);
-         $this->db->update('answers');
+        $query = array (
+          'edited_by' => $dataArray['username'],
+          'Comment' => $dataArray['comment']
+        );
+        $this->db->set($query);
+        $this->db->where('subject_id', $StudentId);
+        $this->db->update('subject_done');
     }
 
     public function insertData($dataSubjects, $dataFormInputs)
@@ -90,8 +85,7 @@ class AssignmentsModel extends CI_model
             if ($question !== '') {
                 $dataArray = array(
                     'question' => $question,
-                    'subject_id' => $lastId,
-                    'cohort' => $students
+                    'subject_id' => $lastId
                 );
                 $this->load->database();
                 $this->db->insert('questions', $dataArray);
@@ -99,22 +93,33 @@ class AssignmentsModel extends CI_model
         }
     }    
 
-    public function insertQuizAnswers($answer)
+    public function insertQuizAnswers($dataArrayQuiz)
     {
-        $dataArray = array(
-            'subject_id' => $answer['subjectId'],
-            'question_id' => $answer['questionId'],
-            'answer' => $answer['answer'],
-            'date' => date('d-m-Y')
-        );
-        $this->load->database();
-        $this->db->insert('answers', $dataArray);
+      $this->load->database();
+      $query = array(
+        'subject_id' => $dataArrayQuiz['subjectId'],
+        'question_id' => $dataArrayQuiz['questionId'],
+        'answer' => $dataArrayQuiz['answer'],
+        'date' => date('d-m-Y')
+      );
+      $this->db->insert('answers', $query);
+    }    
+
+    public function setFinishedTopic($dataArrayTopic)
+    {
+      $this->load->database();
+      $query = array(
+        'name' => $dataArrayTopic['username'],
+        'subject_id' => $dataArrayTopic['subjectId'],
+        'done' => ('Yes')
+      );
+      $this->db->insert('subject_done', $query);
     }
 
-    public function getAssignments($id)
+    public function getAssignments($subject_id)
     {
         $this->load->database();
-        $this->db->where('questions.subject_id', $id);
+        $this->db->where('questions.subject_id', $subject_id);
         $getAssignments = $this->db->get('questions');
         $assignments = $getAssignments->result();
 

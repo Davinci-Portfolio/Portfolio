@@ -1,16 +1,6 @@
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <?php
-      echo link_tag('public/adminLTE/css/bootstrap.min.css');
-      echo link_tag('public/adminLTE/css/AdminLTE.min.css');
-      echo link_tag('public/adminLTE/css/skins/skin-blue.min.css');
-      echo link_tag('public/adminLTE/css/datatables/dataTables.bootstrap.css');
-      echo link_tag('public/adminLTE/plugins/datepicker/datepicker3.css');
-      echo link_tag('public/custom/css/Login.css');
-    ?>
-  </section>
-
+  <!-- Content Header (Page header) -->
+  <!-- <section class="content-header"></section> -->
   <!-- Main content -->
   <section class="content">
       <div class="row">
@@ -30,9 +20,12 @@
                         <div class="login-box-body">
                           <p class="login-box-msg">Sign in to start your session</p>
 
-                          <form method="post" action="<?php echo base_url();?>Login/Login">
+                          <form method="post" action="<?php echo base_url();?>loginController/loginCheck">
+                            <?php if($error) { ?>
+                              <p class="callout callout-warning"><?= var_dump($error); ?></p>
+                            <?php } ?>                            
                             <div class="form-group has-feedback">
-                              <input type="text" name="Username" class="form-control" placeholder="Email">
+                              <input type="text" name="Username" class="form-control" placeholder="Name">
                               <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">

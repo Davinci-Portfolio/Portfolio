@@ -51,6 +51,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 //the : means that it is a parameter
-$route['default_controller'] = 'Login';
+$route['default_controller'] = 'loginController';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

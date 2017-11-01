@@ -15,9 +15,9 @@ class Assignments extends MY_Controller {
 
 	public function index()
 	{
-		$data['subjects'] = $this->AssignmentsModel->getSubjects();
-    	$data['fileNameView'] = 'assignments/overviewAssignments';
-    	$data['students'] = $this->AssignmentsModel->getStudents();
+		$data['subjects'] = $this->AssignmentsModel->getSubjects('');
+    $data['fileNameView'] = 'assignments/overviewAssignments';
+    $data['students'] = $this->AssignmentsModel->getStudents();
 		crender('formPage', $data);
 	}
 
@@ -28,24 +28,32 @@ class Assignments extends MY_Controller {
 		crender('index', $data);
 	}
 
-	public function studentAnswers($id)
+	public function studentAnswers($subject_id)
 	{
-		$data['getAnswers'] = $this->AssignmentsModel->getAnswers($id);
-		$data['getQuestions'] = $this->AssignmentsModel->getQuestions($id);
+		$data['getAnswers'] = $this->AssignmentsModel->getAnswers($subject_id);
+		$data['getQuestions'] = $this->AssignmentsModel->getAssignments($subject_id);
+		$data['doneSubjects'] = $this->AssignmentsModel->getFinishedSubjects($subject_id);
+		$data['subjects'] = $this->AssignmentsModel->getSubjects($subject_id);
 		$data['fileNameView'] = 'studentAnswers';
 		crender('index', $data);
 	}
 
 	public function uploadComment()
 	{
+		$StudentId = $_POST['subject_id'];
 		$Comment = $_POST['comment'];
-		$StudentId = $_POST['studentId'];
-		$this->AssignmentsModel->insertComment($Comment, $StudentId);
-		redirect('Assignments/handedInSubjects');
+		$Username = $_POST['username'];
+		$dataArray = [
+			'comment' => $Comment, 
+			'username' => $Username
+		];
+		$this->AssignmentsModel->insertComment($dataArray, $StudentId);
+		redirect('Assignments/studentAnswers/' . $StudentId);
 	}
 
 	public function formPage($btnElement, $id = null)
 	{
+		$this->load->helper('form');
 		if ($id !== null) {
 			$data['editData'] = $this->AssignmentsModel->getSubjects($id);
 		} else {
@@ -55,6 +63,7 @@ class Assignments extends MY_Controller {
 		$data['JSFileNames'] = ['public/custom/js/formPage.js'];
 		$data['students'] = $this->AssignmentsModel->getStudents();
 		$data['topics'] = $this->AssignmentsModel->getTopic();
+
 		crender('index', $data);
 	}
 
@@ -78,7 +87,7 @@ class Assignments extends MY_Controller {
 			'cohort' => $dataFormCohort
 		];
 		$this->AssignmentsModel->insertData($dataSubjects, $dataFormInput);
-		redirect('Assignments/index');
+		//redirect('Assignments/index');
 	}
 
 	public function updateData()
