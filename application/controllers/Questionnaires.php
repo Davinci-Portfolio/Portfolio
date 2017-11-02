@@ -14,7 +14,8 @@ class questionnaires extends MY_Controller {
 
 	public function index()
 	{
-		$data['subjects'] = $this->AssignmentsModel->getSubjects('');
+		$data['subjects'] = $this->AssignmentsModel->getSubjectsQuestionnaires('');
+		$data['doneSubjects'] = $this->AssignmentsModel->getFinishedSubjects('');
     $data['fileNameView'] = 'questionnaires/overviewQuestionnaires';
 		crender('index', $data);
 	}
@@ -39,15 +40,22 @@ class questionnaires extends MY_Controller {
 
 	public function sendQuizAnswers()
 	{
-		$answer = $this->input->post();
-		var_dump($answer);die();
+
+		// $profile = [];
+		// $answers = $this->input->post();
+		// foreach($answers as $answer){
+		// 	array_push($profile, $answer);
+		// }
+		// var_dump($profile);die();
 		$username = $_POST['username'];
     $answer = $_POST['answer'];
     $subjectId = $_POST['subjectId'];
+    $subjectName = $_POST['subject'];
     $questionId = $_POST['questionId'];
 		$dataArrayTopic = [
 			'subjectId' => $subjectId,
-			'username' => $username
+			'username' => $username,
+			'subjectName' => $subjectName
 		];
 		$dataArrayQuiz = [
 			'answer' => $answer,

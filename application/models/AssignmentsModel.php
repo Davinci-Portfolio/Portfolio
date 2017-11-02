@@ -32,17 +32,11 @@ class AssignmentsModel extends CI_model
         return $subjects;
     }
 
-    public function getSubjectsQuestionnaires($id = null)
+    public function getSubjectsQuestionnaires()
     {
-        $this->load->database();
-        if ($id) {
-            $this->db->where('id', $id);
-        }
-        $this->db->where('display', 1);
-        $getSubjects = $this->db->get('subjects');
-        $subjects = $getSubjects->result();
-
-        return $subjects;
+      $this->load->database();
+      $query = $this->db->from('subjects')->where('display', 1)->get()->result();
+      return $query;
     }
 
     public function getFinishedSubjects($id = null)
@@ -111,6 +105,7 @@ class AssignmentsModel extends CI_model
       $query = array(
         'name' => $dataArrayTopic['username'],
         'subject_id' => $dataArrayTopic['subjectId'],
+        'subject' => $dataArrayTopic['subjectName'],
         'done' => ('Yes')
       );
       $this->db->insert('subject_done', $query);

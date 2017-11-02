@@ -1,7 +1,7 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Questions list about <?= $subjects[ARRAY_FIRST_INDEX]->subject ?></h1>
+    <h1>Questions list about <?= $subjects[0]->subject ?></h1>
   </section>
 
   <!-- Main content -->
@@ -37,6 +37,7 @@
                 </tfoot>
               </table> 
                 <input type="hidden" name="subjectId" value="<?= $subjects[0]->id ?>">
+                <input type="hidden" name="subject" value="<?= $subjects[0]->subject ?>">
                 <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">
                 <input type="hidden" name="questionId" value="<?= $question->id ?>">
             </form>    

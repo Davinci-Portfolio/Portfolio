@@ -38,7 +38,7 @@
                     <td class="lead smallWidth">Feedback left by <?= $subjectDone->edited_by ?> :</td>
                     <td class="lead"><?= $subjectDone->Comment ?></td>
                   <?php } else { ?>
-                    <td class="lead smallWidth">The teacher has not left you any feedback jet.</td>
+                    <td class="lead smallWidth">The teacher has not left you any feedback yet.</td>
                   <?php } ?>
                 </tr>
               <?php } ?>

@@ -28,6 +28,7 @@ class Assignments extends MY_Controller {
 		crender('index', $data);
 	}
 
+	//studentAnswers is een specifike pagina zo weet hij bij wie je zit te kijken zo komt hij aan het subject_id parameter.
 	public function studentAnswers($subject_id)
 	{
 		$data['getAnswers'] = $this->AssignmentsModel->getAnswers($subject_id);
