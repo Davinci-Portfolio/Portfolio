@@ -40,18 +40,35 @@ class questionnaires extends MY_Controller {
 
 	public function sendQuizAnswers()
 	{
-
-		// $profile = [];
-		// $answers = $this->input->post();
-		// foreach($answers as $answer){
-		// 	array_push($profile, $answer);
-		// }
-		// var_dump($profile);die();
 		$username = $_POST['username'];
-    $answer = $_POST['answer'];
+		
+		$post = $this->input->post();
+		$subjects = $this->input->post(['subjectId']);
+		$post_length = count($post);
+	
+		print_r($subjects);
+
+		$questions = [];
+
+		for ($i=1; $i <= (int)$subjects; $i++)
+		{
+			array_push($questions, $post[$i]);
+		}
+
+		print_r($questions);
+
+		die;
+    $questionId = $_POST['questionId'];
+		
+		$answers = [];
+		foreach($answers as $answer){
+			$answer = $this->input->post();
+			array_push($answers, $answer); 
+			var_dump($answer[$questionId]);
+		}
+   die;
     $subjectId = $_POST['subjectId'];
     $subjectName = $_POST['subject'];
-    $questionId = $_POST['questionId'];
 		$dataArrayTopic = [
 			'subjectId' => $subjectId,
 			'username' => $username,
@@ -62,6 +79,7 @@ class questionnaires extends MY_Controller {
 			'subjectId' => $subjectId,
 			'questionId' => $questionId
 		];
+		var_dump($dataArrayQuiz);die;
 		
 		$this->AssignmentsModel->setFinishedTopic($dataArrayTopic);
 		$this->AssignmentsModel->insertQuizAnswers($dataArrayQuiz);	

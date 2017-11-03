@@ -24,7 +24,7 @@
                       <td><?= $question->question ?></td>
                     </tr>
                     <tr>
-                      <td><input class="fullWidth form-control" type="text" placeholder="Your answer" name="<?= $question->subject_id ?>" data-id='<?= $question->id ?>'></td>
+                      <td><input class="fullWidth form-control" type="text" placeholder="Your answer" name="<?= $question->id ?>" data-id='<?= $question->id ?>'></td>
                     </tr>
                   <?php } ?>
                 </tbody>
@@ -39,7 +39,6 @@
                 <input type="hidden" name="subjectId" value="<?= $subjects[0]->id ?>">
                 <input type="hidden" name="subject" value="<?= $subjects[0]->subject ?>">
                 <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">
-                <input type="hidden" name="questionId" value="<?= $question->id ?>">
             </form>    
           </div>
         <!-- /.box-body -->
