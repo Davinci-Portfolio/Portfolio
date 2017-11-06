@@ -13,7 +13,15 @@ class userInfoModel extends CI_model
     return $userInfo;
   }  
 
-  public function incertProfileImgPath($name, $imgInfo)
+  public function getOldImg($userName)
+  {
+    $this->load->database();
+    $query = $this->db->from('students')->where('name', $userName)->get();
+    $ret = $query->row();
+    return $ret->profile_img;
+  }
+
+  public function incertProfileImg($name, $imgInfo)
   {
   	$this->load->database();
 		$this->db->set('profile_img', $imgInfo['file_name']);

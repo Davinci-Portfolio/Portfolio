@@ -22,18 +22,29 @@ class userInfo extends MY_Controller {
     crender('index', $data);
   }
 
+  // public function deleteFiles(){
+  //   $files = glob($path.'*'); // get all file names
+  //   foreach($files as $file){ // iterate files
+  //     if(is_file($file))
+  //        // delete file
+  //       //echo $file.'file deleted';
+  //   }   
+  // }
+
   public function do_upload()
   {
-    $name = $_SESSION['username'];
+    $userName = $_SESSION['username'];
+    $oldImgName = $this->userInfoModel->getOldImg($userName);
     $config['upload_path'] = './public/adminLTE/img/';
     $config['allowed_types'] = 'jpg|png';
     $config['max_size'] = 2048;
     $config['max_width'] = 2048;
     $config['max_height'] = 2048;
     $this->load->library('upload', $config);
+    unlink($config['upload_path'] . $oldImgName); // remove old picture
 
     if ($this->upload->do_upload('userfile')) {
-      $this->userInfoModel->incertProfileImgPath($name, $this->upload->data());
+      $this->userInfoModel->incertProfileImg($userName, $this->upload->data());
       $userImg = $this->upload->data();
       $data['user'] = $this->uri->segment(1);
       $sessionData = array('infoUsers' => $userImg['file_name']);   
@@ -41,8 +52,5 @@ class userInfo extends MY_Controller {
       redirect('userInfo/index');
     }
     else {}
-
   }
 }
-      // $this->session->set_userdata('ci_session', $userImg); 
-      // $data['ci_session'] = $this->session->userdata('ci_session');
