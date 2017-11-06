@@ -13,6 +13,7 @@
                         <h3 class="box-title">alle bestanden die geupload zijn aan de database.</h3>
                     </div>
                     <!-- /.box-header -->
+
                     <div class="box-body">
                         <table class="table table-bordered table-striped overviews">
                             <thead>
@@ -20,7 +21,7 @@
                                     <th>File</th>
                                     <th>File-Size (KB)</th>
                                     <th>Upload date</th>
-                                    <th class="no-sort">Delete / Add files</th>
+                                    <th class="no-sort">Delete Files</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,20 +30,25 @@
                                         <td><?= $import->filename ?></td>
                                         <td><?= $import->file_size ?></td>
                                         <td><?= $import->file_date ?></td>
-                                        <td class="smallWidth twoIcons">
+                                        <td class="smallWidth oneIcon">
                                             <button class="deleteButton">
                                                 <i class="fa fa-trash-o fa-lg"></i>
-                                            </button>
-                                            <button class="addButton">
-                                                <i class="fa fa-plus fa-lg"></i>
                                             </button>
                                         </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
+                        <div>
+                            <input type="file" name="myFile" id="myFile">
+                            <label for="myFile">Choose your file</label>
+                            <input id="files" type="hidden">
+                            <button class="addButton" input="file">
+                                <i class="fa fa-plus fa-lg"></i>
+                            </button>
+                        </div>
                     </div>
-                <!-- /.box-body -->
+                    <!-- /.box-body -->
                 </div>
             <!-- /.box -->
             </div>
