@@ -19,8 +19,13 @@ class Upload extends MY_Controller {
   }
 
   public function readCsv($fileName) {
-    return $data['csvData'] = $this->csvreader->parse_file(base_url() . 'uploads/' . $fileName);
+    $studentName = [];
+    $data = $this->csvreader->parse_file(base_url() . 'uploads/' . $fileName);
+    foreach($data as $student) {
+    $studentName[] = $student;
     
+    }
+    //return $studentName;
   }
 
   public function uploadFile() 
@@ -35,6 +40,7 @@ class Upload extends MY_Controller {
     if (!$this->upload->do_upload('userfile')) {
       $error = array('error' => $this->upload->display_errors());
       redirect('upload/index', $error); 
+
     }
    
     $fileName = $this->upload->data('file_name');
@@ -42,9 +48,9 @@ class Upload extends MY_Controller {
     $file = fopen('./uploads/' . $this->upload->data('file_name'),"r");	
 
     $csvData = $this->readCsv($fileName);
-     
+
     $this->UploadModel->csvData($csvData);
-    //$this->UploadModel->insertFileName($csvData);
+
     $this->load->view('upload', $data);
     //redirect('Overview/index');        
   } 
