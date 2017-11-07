@@ -10,7 +10,9 @@
           <!-- /.box-header -->
           <div class="box-body box-profile">
             <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>/public/adminLTE/img/<?= $infoUsers[0]->profile_img ?>" alt="Profile img">
-            
+            <?php if($info) { ?>
+              <p class="callout callout-warning"><?= $info ?></p>
+            <?php } ?>
             <?= form_open_multipart('userInfo/do_upload'); ?>
             <br>
             <label class="btn btn-default btn-file">

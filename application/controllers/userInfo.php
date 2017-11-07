@@ -14,22 +14,18 @@ class userInfo extends MY_Controller {
     $this->load->helper(array('form', 'url'));
   }
 
-  public function index()
+  public function index($infoMessage = null)
   {
     $name = $_SESSION['username'];
     $data['infoUsers'] = $this->userInfoModel->getUserInfo($name);
     $data['fileNameView'] = 'userInfo';
-    crender('index', $data);
+    if ($infoMessage) {
+      $data['info'] = $infoMessage;
+      crender('index', $data);
+    } else {
+      crender('index', $data);
+    }
   }
-
-  // public function deleteFiles(){
-  //   $files = glob($path.'*'); // get all file names
-  //   foreach($files as $file){ // iterate files
-  //     if(is_file($file))
-  //        // delete file
-  //       //echo $file.'file deleted';
-  //   }   
-  // }
 
   public function do_upload()
   {
@@ -51,6 +47,9 @@ class userInfo extends MY_Controller {
       $this->session->set_userdata($sessionData);
       redirect('userInfo/index');
     }
-    else {}
+    else {
+      $infoMessage = "Verkeerde gebruikersnaam of wachtwoord";
+      $this->index($infoMessage); 
+    }
   }
 }

@@ -19,11 +19,8 @@
                         <!-- /.login-logo -->
                         <div class="login-box-body">
                           <p class="login-box-msg">Sign in to start your session</p>
-
                           <form method="post" action="<?php echo base_url();?>login/loginCheck">
-                            <?php if($error) { ?>
-                              <p class="callout callout-warning"><?= var_dump($error); ?></p>
-                            <?php } ?>                            
+                            <p class="callout callout-warning"><?= $error ?></p>
                             <div class="form-group has-feedback">
                               <input type="text" name="Username" class="form-control" placeholder="Name">
                               <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
