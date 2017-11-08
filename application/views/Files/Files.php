@@ -10,7 +10,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">alle bestanden die geupload zijn aan de database.</h3>
+                        <h3 class="box-title">Alle bestanden die geupload zijn aan de database.</h3>
                     </div>
                     <!-- /.box-header -->
 
