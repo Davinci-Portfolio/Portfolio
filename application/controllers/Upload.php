@@ -25,7 +25,7 @@ class Upload extends MY_Controller {
     $studentName[] = $student;
     
     }
-    //return $studentName;
+    return $studentName;
   }
 
   public function uploadFile() 

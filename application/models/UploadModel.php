@@ -8,7 +8,7 @@ class UploadModel extends CI_Model {
 
     public function csvData($csvData)
     {   
-        
+        var_dump($csvData);die;
         $this->load->database();
         $data = [
             'name' => $csvData['Voornaam'],
