@@ -16,7 +16,8 @@ class login extends MY_Controller
       $data['error'] = $errorMessage;
       loginRender('', $data);
     } else {
-      loginRender('index');
+      $data['error'] = '';
+      loginRender('index', $data);
     }
   }
 

@@ -1,4 +1,6 @@
 <?php
+ob_get_contents();
+ob_end_clean();
 defined('BASEPATH') OR exit('No direct script access allowed');
 /*
   *$fileNameView is needed when you link to other file of your project but you want to keep the css and js files.
@@ -14,13 +16,16 @@ class userInfo extends MY_Controller {
     $this->load->helper(array('form', 'url'));
   }
 
-  public function index($infoMessage = null)
+  public function index($responseMessage = NULL)
   {
     $name = $_SESSION['username'];
     $data['infoUsers'] = $this->userInfoModel->getUserInfo($name);
     $data['fileNameView'] = 'userInfo';
-    if ($infoMessage) {
-      $data['info'] = $infoMessage;
+    if ($responseMessage = 'Uw afbeelding is geupload') {
+      $data['succes'] = $responseMessage;
+      crender('index', $data);
+    } elseif ($responseMessage = 'Er ging iets mis bij het uploaden') {
+      $data['error'] = $responseMessage;
       crender('index', $data);
     } else {
       crender('index', $data);
@@ -37,19 +42,22 @@ class userInfo extends MY_Controller {
     $config['max_width'] = 2048;
     $config['max_height'] = 2048;
     $this->load->library('upload', $config);
-    unlink($config['upload_path'] . $oldImgName); // remove old picture
-
-    if ($this->upload->do_upload('userfile')) {
+    
+    if ($this->upload->do_upload('userfile')) {          
       $this->userInfoModel->incertProfileImg($userName, $this->upload->data());
       $userImg = $this->upload->data();
       $data['user'] = $this->uri->segment(1);
       $sessionData = array('infoUsers' => $userImg['file_name']);   
       $this->session->set_userdata($sessionData);
-      redirect('userInfo/index');
+
+      unlink($config['upload_path'] . $oldImgName); // remove old picture
+
+      $succesMessage = "Uw afbeelding is geupload";
+      $this->index($succesMessage); // succesMessege dat foto is geupload.
     }
     else {
-      $infoMessage = "Verkeerde gebruikersnaam of wachtwoord";
-      $this->index($infoMessage); 
+      $errorMessage = "Er ging iets mis bij het uploaden";
+      $this->index($errorMessage);
     }
   }
 }

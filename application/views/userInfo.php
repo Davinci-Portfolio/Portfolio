@@ -10,8 +10,16 @@
           <!-- /.box-header -->
           <div class="box-body box-profile">
             <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>/public/adminLTE/img/<?= $infoUsers[0]->profile_img ?>" alt="Profile img">
-            <?php if($info) { ?>
-              <p class="callout callout-warning"><?= $info ?></p>
+            <?php if ($succes) { ?>
+              <br><div class="alert alert-success alert-dismissible">
+                <i class="icon fa fa-check"></i><?=  $succes ?>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              </div>
+            <?php } elseif ($error) { ?>
+              <br><div class="alert alert-warning alert-dismissible">
+                <i class="icon fa fa-warning"></i><?= $error ?>
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              </div>
             <?php } ?>
             <?= form_open_multipart('userInfo/do_upload'); ?>
             <br>
