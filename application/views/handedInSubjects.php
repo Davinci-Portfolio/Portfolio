@@ -21,6 +21,7 @@
                             <th>Student</th>
                             <th>Ov-number</th>
                             <th>Finished?</th>
+                            <th>Cohort</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -29,26 +30,15 @@
                               <td><?= $doneSubject->name ?></td>
                               <td><?= $doneSubject->ov_number ?></td>
                               <td><?= $doneSubject->done ?></td>
+                              <?php } ?>
+                              <?php foreach($cohorts as $cohort) { ?>
+                              <td><?= $cohorts[0]->description ?></td>
+                              } <?php ?>
+
                             </tr>
                           <?php } ?>
                         </tbody>
                       </table>
-                          <div class="btn-group">
-                            <button type="button" class="btn btn-default">Cohortresults</button>
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="     dropdown" aria-expanded="false">
-                              <span class="caret"></span>
-                              <span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                              <?php foreach ($students as $student) { ?>
-                              <tr data-row-id="<?= $student->description ?>" class="subjectRow">
-                              <li>
-                                <input name="cohort" value="<?= $student->description ?>" type="checkbox"><?= $student->description ?></input>
-                              </li>
-                            </tr> 
-                            <?php } ?>
-                            </ul>
-                          </div>
                     </div>
                 <!-- /.box-body -->
                 </div>

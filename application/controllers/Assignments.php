@@ -24,6 +24,7 @@ class Assignments extends MY_Controller {
 	public function handedInSubjects()
 	{
 		$data['doneSubjects'] = $this->AssignmentsModel->getFinishedSubjects();
+		$data['cohorts'] = $this->AssignmentsModel->getCohorts();
 		$data['fileNameView'] = 'handedInSubjects';
 		crender('index', $data);
 	}
@@ -63,6 +64,7 @@ class Assignments extends MY_Controller {
 		$data['JSFileNames'] = ['public/custom/js/formPage.js'];
 		$data['students'] = $this->AssignmentsModel->getStudents();
 		$data['topics'] = $this->AssignmentsModel->getTopic();
+		$data['cohorts'] = $this->AssignmentsModel->getStudents();
 
 		crender('index', $data);
 	}
@@ -80,11 +82,11 @@ class Assignments extends MY_Controller {
 		$dataFormTitle = $_POST['title'];
 		$dataFormTopic = $_POST['topic'];
 		$dataFormInput = $_POST['question'];
-		$dataFormCohort = $_POST['cohort'];
+		$dataFormCohort = $_POST['cohorts'];
 		$dataSubjects = [
 			'subject' => $dataFormTitle,
 			'subtopic' => $dataFormTopic,
-			'cohort' => $dataFormCohort
+			'cohorts' => $dataFormCohort
 		];
 		$this->AssignmentsModel->insertData($dataSubjects, $dataFormInput);
 		//redirect('Assignments/index');
@@ -120,7 +122,5 @@ class Assignments extends MY_Controller {
 		$newDisplayedBtn = ($displayBtn == 'closeBtn' ? 1 : 0);
 		$this->AssignmentsModel->changeDisplaySubject($topicId, $newDisplayedBtn);
 	}
-
-
 
 }
