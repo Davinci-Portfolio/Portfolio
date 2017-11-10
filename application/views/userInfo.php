@@ -10,24 +10,24 @@
           <!-- /.box-header -->
           <div class="box-body box-profile">
             <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>/public/adminLTE/img/<?= $infoUsers[0]->profile_img ?>" alt="Profile img">
-            <?php if ($succes) { ?>
+            <?php if ($message == '1') { ?>
               <br><div class="alert alert-success alert-dismissible">
-                <i class="icon fa fa-check"></i><?=  $succes ?>
+                <i class="icon fa fa-check"></i>Uw afbeelding is geupload
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
               </div>
-            <?php } elseif ($error) { ?>
+            <?php } elseif ($message == '2') { ?>
               <br><div class="alert alert-warning alert-dismissible">
-                <i class="icon fa fa-warning"></i><?= $error ?>
+                <i class="icon fa fa-warning"></i>Er ging iets mis bij het uploaden
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
               </div>
             <?php } ?>
             <?= form_open_multipart('userInfo/do_upload'); ?>
-            <br>
-            <label class="btn btn-default btn-file">
-              Browse
-              <input class="" type="file" name="userfile">
-            </label>
-            <button class="btn btn-primary input-file" type="submit" value="upload">submit</button><br>
+            <div class="btn-group">                    
+              <label class="btn btn-default btn-file">
+                Browse<input class="" type="file" name="userfile">
+              </label>
+              <button class="btn btn-primary input-file" type="submit" value="upload">submit</button><br>
+            </div>
             <h3 class="profile-username text-center"><?= $_SESSION['username']; ?></h3>
             <p class="text-muted text-center">Software Engineer</p>
           </div>
