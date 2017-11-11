@@ -20,7 +20,8 @@
                 </thead>
                 <tbody>
                   <?php foreach ($questions as $question) { ?>
-                    <tr data-row-id="<?= $question->id ?>">
+                    <input type="hidden" name="questionId" value="<?= $question->id ?>">
+                    <tr data-row-id="answer<?= $question->id ?>">
                       <td><?= $question->question ?></td>
                     </tr>
                     <tr>

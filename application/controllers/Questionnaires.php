@@ -41,24 +41,15 @@ class questionnaires extends MY_Controller {
 	public function sendQuizAnswers()
 	{
 		$username = $_POST['username'];
-		
-		$post = $this->input->post();
-		$subjects = $this->input->post(['subjectId']);
-		$post_length = count($post);
-	
-		print_r($subjects);
+		// $Questions = $_POST['answer' . ];
+		// foreach questions as question {
+		// 	$answer = $_POST['answer' . question.id];		
+		// }
 
 		$questions = [];
-
-		for ($i=1; $i <= (int)$subjects; $i++)
-		{
-			array_push($questions, $post[$i]);
-		}
-
-		print_r($questions);
-
-		die;
+		$test = $this->input->post();
     $questionId = $_POST['questionId'];
+		var_dump($test); die;
 		
 		$answers = [];
 		foreach($answers as $answer){
@@ -66,7 +57,6 @@ class questionnaires extends MY_Controller {
 			array_push($answers, $answer); 
 			var_dump($answer[$questionId]);
 		}
-   die;
     $subjectId = $_POST['subjectId'];
     $subjectName = $_POST['subject'];
 		$dataArrayTopic = [
