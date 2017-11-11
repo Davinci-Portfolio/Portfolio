@@ -16,16 +16,13 @@ class userInfo extends MY_Controller {
     $this->load->helper(array('form', 'url'));
   }
 
-  public function index($responseMessage = NULL)
+  public function index($message = NULL)
   {
     $name = $_SESSION['username'];
     $data['infoUsers'] = $this->userInfoModel->getUserInfo($name);
     $data['fileNameView'] = 'userInfo';
-    if ($responseMessage = 'Uw afbeelding is geupload') {
-      $data['succes'] = $responseMessage;
-      crender('index', $data);
-    } elseif ($responseMessage = 'Er ging iets mis bij het uploaden') {
-      $data['error'] = $responseMessage;
+    $data['message'] = $message;
+    if ($message) {
       crender('index', $data);
     } else {
       crender('index', $data);
@@ -49,15 +46,13 @@ class userInfo extends MY_Controller {
       $data['user'] = $this->uri->segment(1);
       $sessionData = array('infoUsers' => $userImg['file_name']);   
       $this->session->set_userdata($sessionData);
-
-      unlink($config['upload_path'] . $oldImgName); // remove old picture
-
-      $succesMessage = "Uw afbeelding is geupload";
-      $this->index($succesMessage); // succesMessege dat foto is geupload.
+      if ($oldImgName) { unlink($config['upload_path'] . $oldImgName); } // remove old picture is there is one.
+      $message = "1";
+      $this->index($message); // succesMessege profile picture is uploaded.
     }
     else {
-      $errorMessage = "Er ging iets mis bij het uploaden";
-      $this->index($errorMessage);
+      $message = "2";
+      $this->index($message); // errorMessage profile picture faild to upload.
     }
   }
 }
