@@ -53,7 +53,8 @@ class AssignmentsModel extends CI_model
     public function getAnswers($subject_id)
     { 
         $this->load->database();
-        $getAnswers = $this->db->from('answers')->where('subject_id', $subject_id)->get()->result();
+        $getAnswers = $this->db->from('answers, questions')->where('subject_id', $subject_id)->get()->result();
+        var_dump($getAnswers); die;
         return($getAnswers);
     }
 
@@ -90,13 +91,22 @@ class AssignmentsModel extends CI_model
     public function insertQuizAnswers($dataArrayQuiz)
     {
       $this->load->database();
-      $query = array(
-        'subject_id' => $dataArrayQuiz['subjectId'],
-        'question_id' => $dataArrayQuiz['questionId'],
-        'answer' => $dataArrayQuiz['answer'],
-        'date' => date('d-m-Y')
-      );
-      $this->db->insert('answers', $query);
+      $answers = $dataArrayQuiz['answers'];
+      $questionId = $dataArrayQuiz['questionId'];
+      $subject_id = $dataArrayQuiz['subjectId'];
+      // $ov = $dataArrayQuiz['ov'];
+      $i = 0;
+      foreach ($answers as $answer) {
+        $query = array(
+          'subject_id' => $subject_id,
+          'question_id' => $questionId[$i],
+
+          'answer' => $answer,
+          'date' => date('d-m-Y')
+        );
+        $i++;
+        $this->db->insert('answers', $query); 
+      }
     }    
 
     public function setFinishedTopic($dataArrayTopic)

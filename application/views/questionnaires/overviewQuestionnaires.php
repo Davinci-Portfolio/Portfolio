@@ -45,7 +45,7 @@
               </thead>
               <tbody>
                 <?php foreach ($doneSubjects as $doneSubject) { ?>
-                  <tr title="Open <?= $doneSubject->subject ?>" data-row-id="<?= $subject->id ?>" class="results">
+                  <tr title="Open <?= $doneSubject->subject ?>" data-row-id="<?= $doneSubject->subject_id ?>" class="results">
                     <td><?= $doneSubject->subject ?></td>
 	                </tr>   
                 <?php } ?>

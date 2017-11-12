@@ -20,8 +20,7 @@
                 </thead>
                 <tbody>
                   <?php foreach ($questions as $question) { ?>
-                    <input type="hidden" name="questionId" value="<?= $question->id ?>">
-                    <tr data-row-id="answer<?= $question->id ?>">
+                    <tr data-row-id="<?= $question->id ?>">
                       <td><?= $question->question ?></td>
                     </tr>
                     <tr>
@@ -38,6 +37,7 @@
                 </tfoot>
               </table> 
                 <input type="hidden" name="subjectId" value="<?= $subjects[0]->id ?>">
+                <input type="hidden" name="subject" value="<?= $subjects[0]->subject ?>">
                 <input type="hidden" name="subject" value="<?= $subjects[0]->subject ?>">
                 <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">
             </form>    

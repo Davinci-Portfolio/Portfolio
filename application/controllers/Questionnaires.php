@@ -10,6 +10,7 @@ class questionnaires extends MY_Controller {
 	    parent::__construct();
 	    parent::loginCheck();
 	    $this->load->model('AssignmentsModel');
+	    $this->load->model('OverviewModel');
     }
 
 	public function index()
@@ -28,49 +29,41 @@ class questionnaires extends MY_Controller {
 		crender('index', $data);
 	}
 
-	public function overviewQuestionsAnswers($id = null)
+	public function overviewQuestionsAnswers($subjectId = null)
 	{
-		$data['subjects'] = $this->AssignmentsModel->getSubjects($id);
-		$data['subjectsDone'] = $this->AssignmentsModel->getFinishedSubjects($id);
-		$data['questions'] = $this->AssignmentsModel->getAssignments($id);
-		$data['answers'] = $this->AssignmentsModel->getAnswers($id);
+		$data['subjects'] = $this->AssignmentsModel->getSubjects($subjectId);
+		$data['subjectsDone'] = $this->AssignmentsModel->getFinishedSubjects($subjectId);
+		$data['questionAnswers'] = $this->OverviewModel->getAssignmentsQuestionsAnswers($subjectId);
 		$data['fileNameView'] = 'questionnaires/overviewQuestionsAnswers';
 		crender('index', $data);
 	}
 
 	public function sendQuizAnswers()
 	{
-		$username = $_POST['username'];
-		// $Questions = $_POST['answer' . ];
-		// foreach questions as question {
-		// 	$answer = $_POST['answer' . question.id];		
-		// }
-
-		$questions = [];
-		$test = $this->input->post();
-    $questionId = $_POST['questionId'];
-		var_dump($test); die;
-		
-		$answers = [];
-		foreach($answers as $answer){
-			$answer = $this->input->post();
-			array_push($answers, $answer); 
-			var_dump($answer[$questionId]);
+	 	$subjectId = $_POST['subjectId'];
+	 	$getQuestions = $this->AssignmentsModel->getAssignments($subjectId);
+ 		$answers = [];
+ 		$questionIds = [];
+		foreach ($getQuestions as $getQuestion) {
+			$answer = $_POST[$getQuestion->id];	
+			$questionId = $getQuestion->id;	
+			array_push($answers, $answer);
+			array_push($questionIds, $questionId);
 		}
-    $subjectId = $_POST['subjectId'];
-    $subjectName = $_POST['subject'];
+    $username = $_POST['username'];
+    $subjectName = $_POST['subject']; 
 		$dataArrayTopic = [
 			'subjectId' => $subjectId,
 			'username' => $username,
 			'subjectName' => $subjectName
 		];
 		$dataArrayQuiz = [
-			'answer' => $answer,
+			'answers' => $answers,
 			'subjectId' => $subjectId,
-			'questionId' => $questionId
+			'questionId' => $questionIds
+			// OV => $ov
 		];
-		var_dump($dataArrayQuiz);die;
-		
+	
 		$this->AssignmentsModel->setFinishedTopic($dataArrayTopic);
 		$this->AssignmentsModel->insertQuizAnswers($dataArrayQuiz);	
 		redirect('questionnaires/index');
