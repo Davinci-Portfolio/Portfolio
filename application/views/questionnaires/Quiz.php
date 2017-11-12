@@ -40,6 +40,7 @@
                 <input type="hidden" name="subject" value="<?= $subjects[0]->subject ?>">
                 <input type="hidden" name="subject" value="<?= $subjects[0]->subject ?>">
                 <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">
+                <input type="hidden" name="ovNumber" value="<?= $_SESSION['ov_number']; ?>">
             </form>    
           </div>
         <!-- /.box-body -->

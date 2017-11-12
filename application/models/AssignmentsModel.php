@@ -50,14 +50,6 @@ class AssignmentsModel extends CI_model
         return $subjects_done;
     }    
 
-    public function getAnswers($subject_id)
-    { 
-        $this->load->database();
-        $getAnswers = $this->db->from('answers, questions')->where('subject_id', $subject_id)->get()->result();
-        var_dump($getAnswers); die;
-        return($getAnswers);
-    }
-
     public function insertComment($dataArray, $StudentId)
     {
         $this->load->database();
@@ -92,16 +84,16 @@ class AssignmentsModel extends CI_model
     {
       $this->load->database();
       $answers = $dataArrayQuiz['answers'];
-      $questionId = $dataArrayQuiz['questionId'];
+      $ovNumber = $dataArrayQuiz['ovNumber'];
       $subject_id = $dataArrayQuiz['subjectId'];
-      // $ov = $dataArrayQuiz['ov'];
+      $questionId = $dataArrayQuiz['questionId'];
       $i = 0;
       foreach ($answers as $answer) {
         $query = array(
+          'answer' => $answer,
+          'ov_number' => $ovNumber,
           'subject_id' => $subject_id,
           'question_id' => $questionId[$i],
-
-          'answer' => $answer,
           'date' => date('d-m-Y')
         );
         $i++;
@@ -114,8 +106,9 @@ class AssignmentsModel extends CI_model
       $this->load->database();
       $query = array(
         'name' => $dataArrayTopic['username'],
-        'subject_id' => $dataArrayTopic['subjectId'],
+        'ov_number' => $dataArrayTopic['ovNumber'],
         'subject' => $dataArrayTopic['subjectName'],
+        'subject_id' => $dataArrayTopic['subjectId'],
         'done' => ('Yes')
       );
       $this->db->insert('subject_done', $query);

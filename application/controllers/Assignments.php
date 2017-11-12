@@ -11,6 +11,7 @@ class Assignments extends MY_Controller {
 		parent::loginCheck();
 		parent::checkForbiddenUser();
 		$this->load->model('AssignmentsModel');
+		$this->load->model('OverviewModel');
 	}
 
 	public function index()
@@ -31,8 +32,7 @@ class Assignments extends MY_Controller {
 	//studentAnswers is een specifike pagina zo weet hij bij wie je zit te kijken zo komt hij aan het subject_id parameter.
 	public function studentAnswers($subject_id)
 	{
-		$data['getAnswers'] = $this->AssignmentsModel->getAnswers($subject_id);
-		$data['getQuestions'] = $this->AssignmentsModel->getAssignments($subject_id);
+		$data['questionAnswers'] = $this->OverviewModel->getAssignmentsQuestionsAnswers($subject_id);
 		$data['doneSubjects'] = $this->AssignmentsModel->getFinishedSubjects($subject_id);
 		$data['subjects'] = $this->AssignmentsModel->getSubjects($subject_id);
 		$data['fileNameView'] = 'studentAnswers';

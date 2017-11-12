@@ -26,7 +26,7 @@
               <label class="btn btn-default btn-file">
                 Browse<input class="" type="file" name="userfile">
               </label>
-              <button class="btn btn-primary input-file" type="submit" value="upload">submit</button><br>
+              <button class="btn btn-primary input-file " type="submit" value="upload">submit</button><br>
             </div>
             <h3 class="profile-username text-center"><?= $_SESSION['username']; ?></h3>
             <p class="text-muted text-center">Software Engineer</p>

@@ -52,16 +52,18 @@ class questionnaires extends MY_Controller {
 		}
     $username = $_POST['username'];
     $subjectName = $_POST['subject']; 
+    $ovNumber = $_POST['ovNumber']; 
 		$dataArrayTopic = [
 			'subjectId' => $subjectId,
 			'username' => $username,
-			'subjectName' => $subjectName
+			'subjectName' => $subjectName,
+			'ovNumber' => $ovNumber
 		];
 		$dataArrayQuiz = [
 			'answers' => $answers,
 			'subjectId' => $subjectId,
-			'questionId' => $questionIds
-			// OV => $ov
+			'questionId' => $questionIds,
+			'ovNumber' => $ovNumber
 		];
 	
 		$this->AssignmentsModel->setFinishedTopic($dataArrayTopic);
