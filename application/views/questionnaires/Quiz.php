@@ -1,7 +1,7 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Questions list about <?= $subjects[ARRAY_FIRST_INDEX]->subject ?></h1>
+    <h1>Questions list about <?= $subjects[0]->subject ?></h1>
   </section>
 
   <!-- Main content -->
@@ -24,7 +24,7 @@
                       <td><?= $question->question ?></td>
                     </tr>
                     <tr>
-                      <td><input class="fullWidth form-control" type="text" placeholder="Your answer" name="<?= $question->subject_id ?>" data-id='<?= $question->id ?>'></td>
+                      <td><input class="fullWidth form-control" type="text" placeholder="Your answer" name="<?= $question->id ?>" data-id='<?= $question->id ?>'></td>
                     </tr>
                   <?php } ?>
                 </tbody>
@@ -37,8 +37,10 @@
                 </tfoot>
               </table> 
                 <input type="hidden" name="subjectId" value="<?= $subjects[0]->id ?>">
+                <input type="hidden" name="subject" value="<?= $subjects[0]->subject ?>">
+                <input type="hidden" name="subject" value="<?= $subjects[0]->subject ?>">
                 <input type="hidden" name="username" value="<?= $_SESSION['username']; ?>">
-                <input type="hidden" name="questionId" value="<?= $question->id ?>">
+                <input type="hidden" name="ovNumber" value="<?= $_SESSION['ov_number']; ?>">
             </form>    
           </div>
         <!-- /.box-body -->

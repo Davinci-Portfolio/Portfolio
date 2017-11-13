@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class LoginController extends MY_Controller
+class login extends MY_Controller
 {
 	function __construct()
   {
@@ -14,23 +14,19 @@ class LoginController extends MY_Controller
   {
     if ($errorMessage) {
       $data['error'] = $errorMessage;
-      var_dump($data['error']); die;
-      // redirect('', $data);
-      loginRender('index', $data);
-      $data['fileNameView'] = 'Login';
-      redirect('');
+      loginRender('', $data);
     } else {
-      $data['error'] = ''; 
-      $data['fileNameView'] = 'Login';
+      $data['error'] = '';
       loginRender('index', $data);
     }
   }
 
   public function loginCheck()
-  { 
+  {
     $userdata = [
       'username' => $_POST['Username'],
       'password' => $_POST['Password'],
+      'ov_number' => null,
       'infoUsers' => null,
       'auth' => null,
       'logged_in' => false
@@ -39,10 +35,11 @@ class LoginController extends MY_Controller
     $checkAdmin = '1';
     $students = $this->loginModel->getUserData($userdata['username']); // data van de db
 
-    if ($userdata['username'] == $students[0]->name && $userdata['password'] == $students[0]->wachtwoord) {
+    if ($userdata['username'] == @$students[0]->name && $userdata['password'] == @$students[0]->wachtwoord) {
 
         $userdata['logged_in'] = true;
         $userdata['infoUsers'] = $students[0]->profile_img;
+        $userdata['ov_number'] = $students[0]->ov_number;
 
         $this->session->set_userdata($userdata);
       if ($checkAdmin == $students[0]->admin) { //check if admin is loggedin      
@@ -59,9 +56,8 @@ class LoginController extends MY_Controller
         redirect('questionnaires/index');
       }
     } else {
-      $errorMessage = "Verkeerde username of password";
+      $errorMessage = "Verkeerde gebruikersnaam of wachtwoord";
       $this->index($errorMessage); 
-      exit;
     }
            
   }

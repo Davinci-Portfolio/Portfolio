@@ -32,17 +32,11 @@ class AssignmentsModel extends CI_model
         return $subjects;
     }
 
-    public function getSubjectsQuestionnaires($id = null)
+    public function getSubjectsQuestionnaires()
     {
-        $this->load->database();
-        if ($id) {
-            $this->db->where('id', $id);
-        }
-        $this->db->where('display', 1);
-        $getSubjects = $this->db->get('subjects');
-        $subjects = $getSubjects->result();
-
-        return $subjects;
+      $this->load->database();
+      $query = $this->db->from('subjects')->where('display', 1)->get()->result();
+      return $query;
     }
 
     public function getFinishedSubjects($id = null)
@@ -55,13 +49,6 @@ class AssignmentsModel extends CI_model
         }
         return $subjects_done;
     }    
-
-    public function getAnswers($subject_id)
-    { 
-        $this->load->database();
-        $getAnswers = $this->db->from('answers')->where('subject_id', $subject_id)->get()->result();
-        return($getAnswers);
-    }
 
     public function insertComment($dataArray, $StudentId)
     {
@@ -96,13 +83,22 @@ class AssignmentsModel extends CI_model
     public function insertQuizAnswers($dataArrayQuiz)
     {
       $this->load->database();
-      $query = array(
-        'subject_id' => $dataArrayQuiz['subjectId'],
-        'question_id' => $dataArrayQuiz['questionId'],
-        'answer' => $dataArrayQuiz['answer'],
-        'date' => date('d-m-Y')
-      );
-      $this->db->insert('answers', $query);
+      $answers = $dataArrayQuiz['answers'];
+      $ovNumber = $dataArrayQuiz['ovNumber'];
+      $subject_id = $dataArrayQuiz['subjectId'];
+      $questionId = $dataArrayQuiz['questionId'];
+      $i = 0;
+      foreach ($answers as $answer) {
+        $query = array(
+          'answer' => $answer,
+          'ov_number' => $ovNumber,
+          'subject_id' => $subject_id,
+          'question_id' => $questionId[$i],
+          'date' => date('d-m-Y')
+        );
+        $i++;
+        $this->db->insert('answers', $query); 
+      }
     }    
 
     public function setFinishedTopic($dataArrayTopic)
@@ -110,6 +106,8 @@ class AssignmentsModel extends CI_model
       $this->load->database();
       $query = array(
         'name' => $dataArrayTopic['username'],
+        'ov_number' => $dataArrayTopic['ovNumber'],
+        'subject' => $dataArrayTopic['subjectName'],
         'subject_id' => $dataArrayTopic['subjectId'],
         'done' => ('Yes')
       );

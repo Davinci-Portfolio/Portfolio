@@ -22,12 +22,13 @@
                 </tr>
               </thead>
               <tbody>
+              <?php if ($subjects) { ?>           
                 <?php foreach ($subjects as $subject) { ?>
                   <tr title="Open <?= $subject->subject ?>" data-row-id="<?= $subject->id ?>" class="subjectRow">
                     <td><?= $subject->subject ?></td>
                     <td><?= $subject->subtopic ?></td>
                   </tr>   
-                <?php } ?>
+                <?php } } ?> 
               </tbody>
             </table>
           </div>  
@@ -40,14 +41,12 @@
               <thead>
                 <tr>
                   <th>Maintopic</th>
-                  <th>Subtopic</th>
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($subjects as $subject) { ?>
-                  <tr title="Open <?= $subject->subject ?>" data-row-id="<?= $subject->id ?>" class="results">
-                    <td><?= $subject->subject ?></td>
-                    <td><?= $subject->subtopic ?></td>
+                <?php foreach ($doneSubjects as $doneSubject) { ?>
+                  <tr title="Open <?= $doneSubject->subject ?>" data-row-id="<?= $doneSubject->subject_id ?>" class="results">
+                    <td><?= $doneSubject->subject ?></td>
 	                </tr>   
                 <?php } ?>
               </tbody>

@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Answers from <?= $_SESSION['username']; ?> on <?= $subjects[0]->subject ?></h1>
+    <h1>Answers from <?= $doneSubjects[0]->name ?> on <?= $doneSubjects[0]->subject ?></h1>
   </section>
   <!-- Main content -->
   <section class="content">
@@ -22,11 +22,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($getQuestions as $getQuestion) { ?>
-                    <tr data-row-id="<?= $getQuestion->id ?>">
-                      <td><?= $getQuestion->question ?></td>
-                  <?php } foreach($getAnswers as $getAnswer) { ?>
-                      <td><?= $getAnswer->answer ?></td> 
+                  <?php foreach($questionAnswers as $questionAnswer) { ?>
+                    <tr>
+                      <td><?= $questionAnswer->question ?></td>
+                      <td><?= $questionAnswer->answer ?></td> 
                     </tr>
                   <?php } ?>  
                 </tbody>            

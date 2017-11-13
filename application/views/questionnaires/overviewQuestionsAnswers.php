@@ -1,9 +1,8 @@
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Your Questions - Anwers - Feedback for - <?= $subjects[ARRAY_FIRST_INDEX]->subject ?></h1>
+    <h1>Your Questions - Anwers - Feedback for - <?= $subjects[0]->subject ?></h1>
   </section>
-
   <!-- Main content -->
   <section class="content">
     <div class="row">
@@ -19,11 +18,10 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach($questions as $question) { ?>
-                  <tr data-row-id="<?= $question->id ?>">
-                    <td><?= $question->question ?></td>
-                <?php } foreach($answers as $answer) { ?>
-                    <td><?= $answer->answer ?></td>
+                <?php foreach($questionAnswers as $questionAnswer) { ?>
+                  <tr>
+                    <td><?= $questionAnswer->question ?></td>               
+                    <td><?= $questionAnswer->answer ?></td>  
                   </tr>
                 <?php } ?>     
               </tbody>
@@ -38,7 +36,7 @@
                     <td class="lead smallWidth">Feedback left by <?= $subjectDone->edited_by ?> :</td>
                     <td class="lead"><?= $subjectDone->Comment ?></td>
                   <?php } else { ?>
-                    <td class="lead smallWidth">The teacher has not left you any feedback jet.</td>
+                    <td class="lead smallWidth">The teacher has not left you any feedback yet.</td>
                   <?php } ?>
                 </tr>
               <?php } ?>
