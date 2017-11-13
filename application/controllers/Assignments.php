@@ -72,7 +72,7 @@ class Assignments extends MY_Controller {
 	{
 		$data['questions'] = $this->AssignmentsModel->getAssignments($id);
 		$data['topicId'] = $id;
-    	$data['fileNameView'] = 'assignments/overviewSubjectAssignments';
+    $data['fileNameView'] = 'assignments/overviewSubjectAssignments';
 		crender('index', $data);
 	}
 

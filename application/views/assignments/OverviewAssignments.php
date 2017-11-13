@@ -28,7 +28,7 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($subjects as $subject) { ?>
-                                    <tr data-row-id="<?= $subject->id ?>" class="subjectRow">
+                                    <tr data-row-id="<?= $subject->subject_id ?>">
                                         <td><?= $subject->subject ?></td>
                                         <td><?= $subject->subtopic ?></td>
                                         <td><?= $subject->cohort ?></td>
@@ -36,7 +36,7 @@
                                             <?= $subject->display_date ?>
                                         </td>
                                         <td class="smallWidth twoIcons">
-                                            <button class="editButton">
+                                            <button class="editButton" data-row-id="<?= $subject->subject_id ?>">
                                                 <span class="glyphicon glyphicon-pencil"></span>
                                             </button>
                                             <button type="button" class="<?=$subject->display?>Btn displayButton">
