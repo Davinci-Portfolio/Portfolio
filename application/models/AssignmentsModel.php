@@ -109,6 +109,7 @@ class AssignmentsModel extends CI_model
         'ov_number' => $dataArrayTopic['ovNumber'],
         'subject' => $dataArrayTopic['subjectName'],
         'subject_id' => $dataArrayTopic['subjectId'],
+        'cohort' => $dataArrayTopic['cohort'],
         'done' => ('Yes')
       );
       $this->db->insert('subject_done', $query);
