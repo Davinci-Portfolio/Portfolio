@@ -18,7 +18,7 @@ class Assignments extends MY_Controller {
 	{
 		$data['subjects'] = $this->AssignmentsModel->getSubjects('');
     $data['fileNameView'] = 'assignments/overviewAssignments';
-    $data['students'] = $this->AssignmentsModel->getStudents();
+    $data['students'] = $this->OverviewModel->getStudents();
 		crender('formPage', $data);
 	}
 
