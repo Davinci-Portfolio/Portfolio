@@ -53,11 +53,13 @@ class questionnaires extends MY_Controller {
     $username = $_POST['username'];
     $subjectName = $_POST['subject']; 
     $ovNumber = $_POST['ovNumber']; 
+    $cohort = $_POST['cohort']; 
 		$dataArrayTopic = [
 			'subjectId' => $subjectId,
 			'username' => $username,
 			'subjectName' => $subjectName,
-			'ovNumber' => $ovNumber
+			'ovNumber' => $ovNumber,
+			'cohort' => $cohort
 		];
 		$dataArrayQuiz = [
 			'answers' => $answers,

@@ -29,6 +29,7 @@ class login extends MY_Controller
       'ov_number' => null,
       'infoUsers' => null,
       'auth' => null,
+      'cohort' => null,
       'logged_in' => false
     ];
 
@@ -40,6 +41,7 @@ class login extends MY_Controller
         $userdata['logged_in'] = true;
         $userdata['infoUsers'] = $students[0]->profile_img;
         $userdata['ov_number'] = $students[0]->ov_number;
+        $userdata['cohort'] = $students[0]->cohort;
 
         $this->session->set_userdata($userdata);
       if ($checkAdmin == $students[0]->admin) { //check if admin is loggedin      

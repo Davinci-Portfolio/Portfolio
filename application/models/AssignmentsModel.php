@@ -109,6 +109,7 @@ class AssignmentsModel extends CI_model
         'ov_number' => $dataArrayTopic['ovNumber'],
         'subject' => $dataArrayTopic['subjectName'],
         'subject_id' => $dataArrayTopic['subjectId'],
+        'cohort' => $dataArrayTopic['cohort'],
         'done' => ('Yes')
       );
       $this->db->insert('subject_done', $query);
@@ -157,11 +158,11 @@ class AssignmentsModel extends CI_model
         $this->db->update('subjects');
     }
     
-    public function getStudents(){
+    public function getCohorts()
+    {
         $this->load->database();
-        $query = $this->db->get('cohorts');
-        $students = $query->result();
-        return $students;
+        $query = $this->db->get('cohorts')->result();
+        return $query;
     }
 
 }

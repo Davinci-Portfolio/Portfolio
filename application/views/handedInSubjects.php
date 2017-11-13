@@ -12,6 +12,7 @@
                     <div class="box-header">
                         <h3 class="box-title">All handed in Assigments.</h3>
                     </div>
+                    
                     <!-- /.box-header -->
                     <div class="box-body">
                       <table class="table table-bordered table-striped overviews">
@@ -20,6 +21,7 @@
                             <th>Student</th>
                             <th>Ov-number</th>
                             <th>Finished?</th>
+                            <th>Cohort</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -28,6 +30,7 @@
                               <td><?= $doneSubject->name ?></td>
                               <td><?= $doneSubject->ov_number ?></td>
                               <td><?= $doneSubject->done ?></td>
+                              <td><?= $doneSubject->cohort ?></td>
                             </tr>
                           <?php } ?>
                         </tbody>
