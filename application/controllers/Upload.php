@@ -48,7 +48,7 @@ class Upload extends MY_Controller {
     $file = fopen('./uploads/' . $this->upload->data('file_name'),"r");	
 
     $csvData = $this->readCsv($fileName);
-
+    
     $this->UploadModel->csvData($csvData);
 
     $this->load->view('upload', $data);

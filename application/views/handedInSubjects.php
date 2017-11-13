@@ -30,11 +30,7 @@
                               <td><?= $doneSubject->name ?></td>
                               <td><?= $doneSubject->ov_number ?></td>
                               <td><?= $doneSubject->done ?></td>
-                              <?php } ?>
-                              <?php foreach($cohorts as $cohort) { ?>
-                              <td><?= $cohorts[0]->description ?></td>
-                              } <?php ?>
-
+                              <td><?= $doneSubject->cohort ?></td>
                             </tr>
                           <?php } ?>
                         </tbody>
