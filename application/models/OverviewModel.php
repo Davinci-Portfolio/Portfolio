@@ -1,5 +1,7 @@
 <?php
-class OverviewModel extends CI_model {
+class OverviewModel extends CI_model 
+{
+    
     public function getStudents($studentId = null) {
         $this->load->database();
         if ($studentId) {

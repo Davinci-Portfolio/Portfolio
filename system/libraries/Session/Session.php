@@ -786,10 +786,8 @@ class CI_Session {
 	 */
 	public function set_userdata($data, $value = NULL)
 	{
-		if (is_array($data))
-		{
-			foreach ($data as $key => &$value)
-			{
+		if (is_array($data)) {
+			foreach ($data as $key => $value) {
 				$_SESSION[$key] = $value;
 			}
 

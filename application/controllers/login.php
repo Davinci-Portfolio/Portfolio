@@ -50,23 +50,16 @@ class login extends MY_Controller
           $userdata['auth'] = "admin"; 
 
           $this->session->set_userdata($userdata);
-          redirect('Overview/index'); 
-        } else { //check if normal user is loggedin
-          
-          $userdata['auth'] = "user";
-
-          $this->session->set_userdata($userdata);
-          redirect('questionnaires/index');
+          return redirect('Overview/index'); 
         }
-      } else {
-        $errorMessage = "Verkeerde gebruikersnaam of wachtwoord";
-        $this->index($errorMessage); 
-      }
-    } else {
-      $errorMessage = "Verkeerde gebruikersnaam of wachtwoord";
-      $this->index($errorMessage); 
+        $userdata['auth'] = "user";
+
+        $this->session->set_userdata($userdata);
+        return redirect('questionnaires/index');
+      } 
     }
-           
+    $errorMessage = "Verkeerde gebruikersnaam of wachtwoord";
+    $this->index($errorMessage);       
   }
 
   public function userLogout()

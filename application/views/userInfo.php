@@ -9,13 +9,13 @@
           </div>
           <!-- /.box-header -->
           <div class="box-body box-profile">
-            <img class="profile-user-img img-responsive img-circle" src="<?php echo base_url();?>/public/adminLTE/img/<?= $infoUsers[0]->profile_img ?>" alt="Profile img">
+            <img class="profile-user-img img-responsive img-circle" src="<?= base_url();?>/public/adminLTE/img/<?= $infoUsers[0]->profile_img ?>" alt="Profile img">
             <?php if ($message == '1') { ?>
               <br><div class="alert alert-success alert-dismissible">
                 <i class="icon fa fa-check"></i>Uw afbeelding is geupload
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
               </div>
-            <?php } elseif ($message == '2') { ?>
+            <?php endif } elseif ($message == '2' ) { ?>
               <br><div class="alert alert-warning alert-dismissible">
                 <i class="icon fa fa-warning"></i>Er ging iets mis bij het uploaden
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
