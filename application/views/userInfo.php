@@ -15,7 +15,7 @@
                 <i class="icon fa fa-check"></i>Uw afbeelding is geupload
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
               </div>
-            <?php endif } elseif ($message == '2' ) { ?>
+            <?php } elseif ($message == '2' ) { ?>
               <br><div class="alert alert-warning alert-dismissible">
                 <i class="icon fa fa-warning"></i>Er ging iets mis bij het uploaden
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>

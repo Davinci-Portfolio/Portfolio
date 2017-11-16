@@ -1,8 +1,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Creating Assignments</h1>
-                      <?php var_dump($students); ?>
+      <h1>Creating Assignments</h1>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -28,8 +27,8 @@
                       <li class="inputQuest">
                         <!-- drag handle -->
                         <span class="handle">
-                            <i class="fa fa-ellipsis-v"></i>
-                            <i class="fa fa-ellipsis-v"></i>
+                          <i class="fa fa-ellipsis-v"></i>
+                          <i class="fa fa-ellipsis-v"></i>
                         </span>
                         <!-- checkbox -->
                         <input name="question[]" class="text" type="text" placeholder="Vraag">
