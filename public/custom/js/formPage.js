@@ -20,10 +20,10 @@ $('#sendData').on('click', function() {
  
     if (inputTitle == ''|| inputSubtopic == '') {
         if (inputTitle == '') {
-            $("input[name='title']").addClass('error')
+            $("input[name='title']").addClass('error');
         }
         if (inputSubtopic == '') {
-            $("input[name='subtopic']").addClass('error')
+            $("input[name='subtopic']").addClass('error');
         }
     } else {
         $.ajax({
@@ -31,7 +31,7 @@ $('#sendData').on('click', function() {
             data: formData,
             type: 'post',
             success: function() {
-                // document.location.href = '/portfolio/Assignments/index';
+                document.location.href = '/portfolio/Assignments/index';
             },
             error: function() {}
         });
