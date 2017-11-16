@@ -19,19 +19,29 @@ class Upload extends MY_Controller {
   }
 
   public function readCsv($fileName) {
-    $studentName = [];
-    $data = $this->csvreader->parse_file(base_url() . 'uploads/' . $fileName);
-    foreach($data as $student) {
-    $studentName[] = $student;
-    
+    // array(1) { ["﻿OV nummer"]=> string(16) "99034334" } 
+    $handle = fopen(base_url() . 'uploads/' . $fileName,'r');
+    $row = 1;
+    $new_data = [];
+    while ( ($data = fgetcsv($handle) ) !== false ) {
+       $num = count($data);
+        $row++;
+        for ($c=0; $c < $num; $c++) {
+            $new_data[] = $data[$c];
+        }
     }
-    return $studentName;
+
+    foreach ($new_data as $key => $value) {
+      $str = explode(';', $value);
+      var_dump($new_data);die;
+
+    }
   }
 
   public function uploadFile() 
   { 
     $row = [];
-    $config['upload_path']   = './uploads/'; 
+    $config['upload_path']   = 'uploads/'; 
     $config['allowed_types'] = 'csv|xls|xlsx|xml'; 
     $config['max_size']      = 10000; 
 
@@ -40,7 +50,6 @@ class Upload extends MY_Controller {
     if (!$this->upload->do_upload('userfile')) {
       $error = array('error' => $this->upload->display_errors());
       redirect('upload/index', $error); 
-
     }
    
     $fileName = $this->upload->data('file_name');
