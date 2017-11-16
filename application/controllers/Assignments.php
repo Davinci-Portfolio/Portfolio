@@ -17,8 +17,8 @@ class Assignments extends MY_Controller {
 	public function index()
 	{
 		$data['subjects'] = $this->AssignmentsModel->getSubjects('');
-    $data['fileNameView'] = 'assignments/overviewAssignments';
     $data['students'] = $this->OverviewModel->getStudents();
+    $data['fileNameView'] = 'assignments/overviewAssignments';
 		crender('formPage', $data);
 	}
 
@@ -63,9 +63,8 @@ class Assignments extends MY_Controller {
 		}
 		$data['fileNameView'] = 'assignments/formPage';
 		$data['JSFileNames'] = ['public/custom/js/formPage.js'];
-		$data['students'] = $this->AssignmentsModel->getStudents();
+		$data['students'] = $this->OverviewModel->getStudents();
 		$data['topics'] = $this->AssignmentsModel->getTopic();
-		$data['cohorts'] = $this->AssignmentsModel->getStudents();
 
 		crender('index', $data);
 	}
@@ -83,14 +82,13 @@ class Assignments extends MY_Controller {
 		$dataFormTitle = $_POST['title'];
 		$dataFormTopic = $_POST['topic'];
 		$dataFormInput = $_POST['question'];
-		$dataFormCohort = $_POST['cohorts'];
+		$dataFormCohort = $_POST['cohort'];
 		$dataSubjects = [
 			'subject' => $dataFormTitle,
 			'subtopic' => $dataFormTopic,
-			'cohorts' => $dataFormCohort
+			'cohort' => $dataFormCohort
 		];
 		$this->AssignmentsModel->insertData($dataSubjects, $dataFormInput);
-		//redirect('Assignments/index');
 	}
 
 	public function updateData()

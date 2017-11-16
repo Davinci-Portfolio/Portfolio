@@ -11,12 +11,13 @@ function addDeleteInput() {
     });
 }
 
-$('#sendData').on('click', function() {
+$('#sendData').on('click', function() { 
     $("input[name='title'], input[name='subtopic']").removeClass('error');
     var base_url = $('#searchTag').attr('data-baseurl');
     var inputTitle = $("input[name='title']").val();
     var inputSubtopic = $("input[name='subtopic']").val();
     var formData = $('#formInput').serialize();
+ 
     if (inputTitle == ''|| inputSubtopic == '') {
         if (inputTitle == '') {
             $("input[name='title']").addClass('error')
@@ -30,7 +31,7 @@ $('#sendData').on('click', function() {
             data: formData,
             type: 'post',
             success: function() {
-                document.location.href = '/portfolio/Assignments/index';
+                // document.location.href = '/portfolio/Assignments/index';
             },
             error: function() {}
         });

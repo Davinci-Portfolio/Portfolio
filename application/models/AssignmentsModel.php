@@ -72,7 +72,9 @@ class AssignmentsModel extends CI_model
             if ($question !== '') {
                 $dataArray = array(
                     'question' => $question,
-                    'subject_id' => $lastId
+                    'subject_id' => $lastId,
+                    // 'subject_id' => $,
+                    'display_date' => date('d-m-Y')
                 );
                 $this->load->database();
                 $this->db->insert('questions', $dataArray);

@@ -36,32 +36,30 @@ class login extends MY_Controller
     $checkAdmin = '1';
     $students = $this->loginModel->getUserData($userdata['username']); // data van de db
 
-    if ($userdata['username'] == @$students[0]->name && $userdata['password'] == @$students[0]->wachtwoord) {
+    if ($students) {
+      if ($userdata['username'] === $students[0]->name && $userdata['password'] === $students[0]->wachtwoord) {
 
-        $userdata['logged_in'] = true;
-        $userdata['infoUsers'] = $students[0]->profile_img;
-        $userdata['ov_number'] = $students[0]->ov_number;
-        $userdata['cohort'] = $students[0]->cohort;
+          $userdata['logged_in'] = true;
+          $userdata['infoUsers'] = $students[0]->profile_img;
+          $userdata['ov_number'] = $students[0]->ov_number;
+          $userdata['cohort'] = $students[0]->cohort;
 
-        $this->session->set_userdata($userdata);
-      if ($checkAdmin == $students[0]->admin) { //check if admin is loggedin      
-        
-        $userdata['auth'] = "admin"; 
+          $this->session->set_userdata($userdata);
+        if ($checkAdmin == $students[0]->admin) { //check if admin is loggedin      
+          
+          $userdata['auth'] = "admin"; 
 
-        $this->session->set_userdata($userdata);
-        redirect('Overview/index'); 
-      } else { //check if normal user is loggedin
-        
+          $this->session->set_userdata($userdata);
+          return redirect('Overview/index'); 
+        }
         $userdata['auth'] = "user";
 
         $this->session->set_userdata($userdata);
-        redirect('questionnaires/index');
-      }
-    } else {
-      $errorMessage = "Verkeerde gebruikersnaam of wachtwoord";
-      $this->index($errorMessage); 
+        return redirect('questionnaires/index');
+      } 
     }
-           
+    $errorMessage = "Verkeerde gebruikersnaam of wachtwoord";
+    $this->index($errorMessage);       
   }
 
   public function userLogout()
