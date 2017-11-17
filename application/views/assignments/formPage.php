@@ -19,7 +19,7 @@
                     <input name="title" class="headText" type="text" placeholder="Titel vragenlijst">
                      <select name="topic" class="form-control">
                       <?php foreach($topics as $topic) { ?>
-                        <option value="<?=$topic->Topic ?>"><?=$topic->Topic ?></option>
+                        <option value="<?=$topic->topic ?>"><?=$topic->topic ?></option>
                       <?php } ?>
                     </select>
                     </br>
