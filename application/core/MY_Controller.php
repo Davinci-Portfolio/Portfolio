@@ -22,7 +22,7 @@ class MY_Controller extends CI_Controller {
     {
         // check user login
         if ($this->session) {
-            if ($this->session->auth == 'user' || $this->session->auth == 'admin' ) {
+            if ($this->session->auth === 'user' || $this->session->auth === 'admin' ) {
             } else {
                 redirect('');
             }

@@ -1,5 +1,7 @@
 <?php
-class OverviewModel extends CI_model {
+class OverviewModel extends CI_model 
+{
+    
     public function getStudents($studentId = null) {
         $this->load->database();
         if ($studentId) {
@@ -26,25 +28,21 @@ class OverviewModel extends CI_model {
         return $assignments;
     }
 
-    public function getAssignmentsQuestionsAnswers($studentId, $assignmentId) {
+    public function getAssignmentsQuestionsAnswers($subject_id) {
 
         $this->load->database();
         $this->db->join('answers', 'answers.question_id = questions.id', 'left outer');
-        $this->db->where('answers.student_id', $studentId);
-        $this->db->where('questions.subject_id', $assignmentId);
-        $getQuestionsAndAnswers = $this->db->get('questions');
-        $questionsAndAnswers = $getQuestionsAndAnswers->result();
-
-        foreach ($questionsAndAnswers as $questionAndAnswer) {
-            if ($questionAndAnswer->answer == '') {
-                $questionAndAnswer->answer = 'The user did not answer correctly!';
-                $questionAndAnswer->wrong = 'X';
-            } else {
-                $questionAndAnswer->wrong = '';
-            }
-        }
-
+        $this->db->where('questions.subject_id', $subject_id);
+        $questionsAndAnswers = $this->db->get('questions')->result();
         return $questionsAndAnswers;
+        // foreach ($questionsAndAnswers as $questionAndAnswer) {
+        //     if ($questionAndAnswer->answer == '') {
+        //         $questionAndAnswer->answer = 'The user did not answer correctly!';
+        //         $questionAndAnswer->wrong = 'X';
+        //     } else {
+        //         $questionAndAnswer->wrong = '';
+        //     }
+        // }
     }
 
 }

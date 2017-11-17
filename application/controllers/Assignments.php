@@ -11,37 +11,46 @@ class Assignments extends MY_Controller {
 		parent::loginCheck();
 		parent::checkForbiddenUser();
 		$this->load->model('AssignmentsModel');
+		$this->load->model('OverviewModel');
 	}
 
 	public function index()
 	{
-		$data['subjects'] = $this->AssignmentsModel->getSubjects();
-    	$data['fileNameView'] = 'assignments/overviewAssignments';
-    	$data['students'] = $this->AssignmentsModel->getStudents();
+		$data['subjects'] = $this->AssignmentsModel->getSubjects('');
+    $data['students'] = $this->OverviewModel->getStudents();
+    $data['fileNameView'] = 'assignments/overviewAssignments';
 		crender('formPage', $data);
 	}
 
 	public function handedInSubjects()
 	{
 		$data['doneSubjects'] = $this->AssignmentsModel->getFinishedSubjects();
+		$data['cohorts'] = $this->AssignmentsModel->getCohorts();
 		$data['fileNameView'] = 'handedInSubjects';
 		crender('index', $data);
 	}
 
-	public function studentAnswers($studentId)
+	//studentAnswers is een specifike pagina zo weet hij bij wie je zit te kijken zo komt hij aan het subject_id parameter.
+	public function studentAnswers($subject_id)
 	{
-		//$data['doneSubjects'] = $this->AssignmentsModel->getFinishedSubjects();
-		$data['getAnswers'] = $this->AssignmentsModel->getAnswers($studentId);
+		$data['questionAnswers'] = $this->OverviewModel->getAssignmentsQuestionsAnswers($subject_id);
+		$data['doneSubjects'] = $this->AssignmentsModel->getFinishedSubjects($subject_id);
+		$data['subjects'] = $this->AssignmentsModel->getSubjects($subject_id);
 		$data['fileNameView'] = 'studentAnswers';
 		crender('index', $data);
 	}
 
 	public function uploadComment()
 	{
+		$StudentId = $_POST['subject_id'];
 		$Comment = $_POST['comment'];
-		$StudentId = $_POST['studentId'];
-		$this->AssignmentsModel->insertComment($Comment, $StudentId);
-		redirect('Assignments/handedInSubjects');
+		$Username = $_POST['username'];
+		$dataArray = [
+			'comment' => $Comment, 
+			'username' => $Username
+		];
+		$this->AssignmentsModel->insertComment($dataArray, $StudentId);
+		redirect('Assignments/studentAnswers/' . $StudentId);
 	}
 
 	public function formPage($btnElement, $id = null)
@@ -54,7 +63,7 @@ class Assignments extends MY_Controller {
 		}
 		$data['fileNameView'] = 'assignments/formPage';
 		$data['JSFileNames'] = ['public/custom/js/formPage.js'];
-		$data['students'] = $this->AssignmentsModel->getStudents();
+		$data['students'] = $this->OverviewModel->getStudents();
 		$data['topics'] = $this->AssignmentsModel->getTopic();
 
 		crender('index', $data);
@@ -64,7 +73,7 @@ class Assignments extends MY_Controller {
 	{
 		$data['questions'] = $this->AssignmentsModel->getAssignments($id);
 		$data['topicId'] = $id;
-    	$data['fileNameView'] = 'assignments/overviewSubjectAssignments';
+    $data['fileNameView'] = 'assignments/overviewSubjectAssignments';
 		crender('index', $data);
 	}
 
@@ -80,7 +89,6 @@ class Assignments extends MY_Controller {
 			'cohort' => $dataFormCohort
 		];
 		$this->AssignmentsModel->insertData($dataSubjects, $dataFormInput);
-		redirect('Assignments/index');
 	}
 
 	public function updateData()
@@ -113,7 +121,5 @@ class Assignments extends MY_Controller {
 		$newDisplayedBtn = ($displayBtn == 'closeBtn' ? 1 : 0);
 		$this->AssignmentsModel->changeDisplaySubject($topicId, $newDisplayedBtn);
 	}
-
-
 
 }
