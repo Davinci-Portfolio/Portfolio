@@ -40,12 +40,10 @@
                             </tbody>
                         </table>
                         <div>
-                            <input type="file" name="myFile" id="myFile">
-                            <label for="myFile">Choose your file</label>
-                            <input id="files" type="hidden">
-                            <button class="addButton" input="file">
-                                <i class="fa fa-plus fa-lg"></i>
-                            </button>
+                            <?= form_open_multipart('upload/Upload');?>
+                                <input type="file" name="userfile" size="20" />
+                                <input type="submit" value="upload" />
+                            </form>
                         </div>
                     </div>
                     <!-- /.box-body -->
