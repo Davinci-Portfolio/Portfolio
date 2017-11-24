@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /*
 	*$fileNameView is needed when you link to other file of your project but you want to keep the css and js files.
 */
-class questionnaires extends MY_Controller {
+class Questionnaires extends MY_Controller {
     
     function __construct()
     {

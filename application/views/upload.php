@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-xs-4">
         <div class="box">
-          <form method="post" action="<?php echo base_url();?>upload/uploadFile" enctype='multipart/form-data'> 
+          <form method="post" action="<?php echo base_url();?>Upload/uploadFile" enctype='multipart/form-data'> 
             <div class="box-header">
               <h3 class="box-title">Upload a file</h3>
             </div>

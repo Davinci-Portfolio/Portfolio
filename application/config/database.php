@@ -69,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-$active_group = 'develop';
+$active_group = 'accept';
 $query_builder = TRUE;
 function dd($input, $die = false){
     echo "<pre>";
@@ -104,7 +104,7 @@ $db['accept'] = array(
     'dsn'  => 'mysql:host=localhost; dbname=portfolio_database; charset=utf8;',
     'hostname' => 'localhost',
     'username' => 'portfolio_admin',
-    'password' => 'LjkmyQlGf',
+    'password' => 'portfolio123',
     'database' => 'portfolio_database',
     'dbdriver' => 'pdo',
     'dbprefix' => '',

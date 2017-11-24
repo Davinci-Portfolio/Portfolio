@@ -1,12 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class login extends MY_Controller
+class Login extends MY_Controller
 {
 	function __construct()
   {
     parent::__construct();
-    $this->load->model('loginModel');
+    $this->load->model('LoginModel');
     $this->load->library('session'); 
   }
   
@@ -34,7 +34,7 @@ class login extends MY_Controller
     ];
 
     $checkAdmin = '1';
-    $students = $this->loginModel->getUserData($userdata['username']); // data van de db
+    $students = $this->LoginModel->getUserData($userdata['username']); // data van de db
 
     if ($students) {
       if ($userdata['username'] === $students[0]->name && $userdata['password'] === $students[0]->wachtwoord) {

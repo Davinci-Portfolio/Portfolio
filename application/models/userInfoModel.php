@@ -1,5 +1,5 @@
 <?php
-class userInfoModel extends CI_model
+class UserInfoModel extends CI_model
 {
 
 	public function getUserInfo($userName)
